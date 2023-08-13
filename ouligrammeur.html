@@ -1,1214 +1,204 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OuLiPo</title>
-    <link href="bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet"> 
-    <!--<link href='https://fonts.googleapis.com/css?family=Alegreya:400,400italic,700,700italic' rel='stylesheet' type='text/css'>-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript" src="jQueryRotate.js"></script>
-<script src="jquery.ui.touch.js"></script>
-<script type="text/javascript" src="jquery.easing.1.3.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
- <style type="text/css">
-body{
-	/*font-family: 'Alegreya Sans', sans-serif;*/
-}
-
-</style>
-  </head>
-  <body>
-      
-
-
-
-<div id="anagrammeur">
-<style type="text/css">
-body{
-	/*font-family: 'Alegreya Sans', sans-serif;*/
-}
-.phonemeAnagrammes{
-	width:100%;
-	height:100%;
-	font-weight:bold;
-	text-transform: uppercase ;
-}
-.ligne{
-	width:100%;
-	min-height:3.8em;
-	border:solid black 1px;
-}
-.blocPhoneme{
-	display:inline-block;
-	border-radius:0.5em;
-	border:solid lightgrey 1px;
-	/*padding: 0.1em 0em;*/
-	width:1.5em;
-	text-align:center;
-	margin: 0.1em;
-	line-height:1.5em;
-	vertical-align:middle;
-	font-size:28px;
-	position:relative;
-	cursor:pointer;
-	background-color:white;
-
-Verdana,Arial,sans-serif;
-
-
-}
-.deletePhoneme{
-	font-size:15px;
-	line-height:15px;
-	position:absolute;
-	right:0px;
-	top:0px;
-	cursor:pointer;
-	opacity:0.3;
-}
-.deletePhoneme:hover{
-	opacity:0.9;
-}
-#original{
-	background:#eee;
-}
-.aideMemoire{
-	display:inline-block;
-	width:50%;
-}
-.blocCommandesLigne{
-	display:inline-block;
-	float:right;
-	height:1em;
-}
-.dupliquerLigne,.supprimerLigne,.modeLigne{
-	cursor:pointer;
-	display:inline-block;
-	margin:0.5em;
-	border:solid lightgrey 1px;
-	padding:3px;
-}
-#wrapIdees>.ligne{
-	margin-top:1em;
-	z-index:1;
-	background-color:white;
-}
-.toggleAide,#toggleChaton{
-	cursor:pointer;
-	text-decoration:underline;
-}
-.toggleAide:hover,#toggleChaton;hover{
-	text-decoration:underline;
-}
-#toggleChaton{
-	font-size:10px;
-}
-#resultatAuto{
-	height:99vh;
-	overflow:auto;
-	font-size:19px;
-}
-#colWrapResultats{
-	position:fixed;
-	right:0px;
-}
-.phonemeAutoAnagrammes{
-	background-color:#eaf7ed
-}
-.waiting{
-	background-image:url(wait.gif);
-	background-position:center;
-	background-repeat:no-repeat;
-}
-.selectable{
-	background-color:lightblue;
-}
-.proposition{
-	border-top:solid lightgrey 1px;
-	font-weight:bold;
-}
-.last{
-	cursor:pointer;
-	text-decoration:underline;
-	font-weight:normal;
-}
-.reduireProposition{
-	float:right;
-	background:lightgrey;
-	cursor:pointer;
-	width:1em;
-	height:1em;
-	border-radius:0.5em;
-	vertical-align:middle;
-	line-height:1em;
-	text-align:center;
-}
-#exemplePho{
-	margin-left:20px;
-}
-.captionSuggestion{
-	/*text-transform:capitalize;*/
-	cursor:pointer;
-}
-#tailleMotMini{
-	width:3em;
-}
-.blocPhonemeOblig{
-	border:solid red 1px;
-}
-.proposition[data-rang='0']{
-	background-color:#eee
-}
-#exclureDuDico{
-	width:100%;
-	min-height:4em;
-}
-#notesPerso{
-	width:100%;
-	min-height:4em;
-}
-
-#zoomMoinsText,#zoomPlusText{
-	height:2.1em;
-	display:inline-block;
-	cursor:pointer;
-	border:solid lightgrey 1px;
-	border-radius:50%;
-}
-#zoomMoinsText:hover,#zoomPlusText:hover{
-	background-color:#eaf7ed
-}
-.boutonChoixLangue{
-	display:inline-block;
-}
-#selectFr,#selectEn{
-	height:1.7em;
-	display:inline-block;
-	cursor:pointer;
-	border:solid white 2px;
-	opacity:0.3;
-	border-radius:2px;
-}
-#selectFr.lgSelected,#selectEn.lgSelected{
-	border:solid black 2px;
-	opacity:1;
-}
-#phraseOriginale{
-	width:100%
-}
-.lignePhonemesWrap{
-	padding-top:35px;
-}
-.modeLigne{
-	text-decoration:underline;
-}
-/*
-.proposition[data-nbmots="2"]{background-color:#eee;}
-.proposition[data-nbmots="3"]{background-color:#ddd;}
-.proposition[data-nbmots="4"]{background-color:#ccc;}
-.proposition[data-nbmots="5"]{background-color:#bbb;}
-.proposition[data-nbmots="6"]{background-color:#aaa;}
-.proposition[data-nbmots="7"]{background-color:#999;}
-.proposition[data-nbmots="8"]{background-color:#888;}
-.proposition[data-nbmots="9"]{background-color:#777;}
-
-*/
-
-
-
-
-</style>
-<div class="container-fluid">
-
-    <div class="row">
-        <div class="col-xs-6 col-md-8">
-            <div class="row">
-                <div class="col-xs-12 col-md-8">
-                    <input class="btn" type="button" id="reinit" value="Réinitialiser" style="display:none">
-                    <input type="text" id="phraseOriginale" class="aideMemoire" value="Phrase originale"><span id="exemplePho"></span><div style="display:inline-block" id="anagScore"></div>
-                    <div id="original" class="ligne"></div>
-                    <input class="btn" type="button" id="creerOriginal" value="C'est parti !">
-                     <span id="shareUrl"></span>
-               </div>
-                <div class="col-xs-12 col-md-4">
-                    <input class="btn elementDeMenu" type="button" id="selectTout" value="Tout sélectionner" style="background-color:#eaf7ed;display:none">
-                    <input class="btn" type="button" id="invertHelp" value="Inverser" style="background-color:#eaf7ed;display:none"><br>
-                    
-                    <input class="btn" type="button" id="help" value="Des idées ? (strict)" style="background-color:#eaf7ed;display:none">
-                    <input type="number" id="tailleMotMini" style="display:none" min="1" step="1"> <span id="nbCandidats"></span><br>
-                    
-                    <input class="btn" type="button" id="helpFirst" value="Des idées ? (1er mot)" style="background-color:#eaf7ed;display:none"><br>
-                    
-                    <input class="btn" type="button" id="helpClasser" value="Freq" style="background-color:#eaf7ed;display:none">
-                    <input class="btn" type="button" id="helpClasserTaille" value="Taille" style="background-color:#eaf7ed;display:none">
-                    <input class="btn" type="button" id="helpClasserTailleEtNbMots" value="Nombre" style="background-color:#eaf7ed;display:none">
-                    <input class="btn" type="button" id="stopWorker" value="Stop" style="background-color:#eaf7ed;display:none"><br>
-                    <span class="elementDeMenu" style="display:none">[Freq] boosté <input type="checkbox" id="activerBoost" unchecked></span><br>
-                    <!--
-                    <div style="text-align:center;">
-                         <label class="boutonChoixLangue" for="choixLangueAnagFr" style="width:30%;display:none">Français</label> <input class="boutonChoixLangue" type="radio" name="choixLangueAnag" id="choixLangueAnagFr" checked="checked" style="margin-right:10px;display:none">
-                        <input class="boutonChoixLangue" type="radio" name="choixLangueAnag" id="choixLangueAnagEn" style="margin-left:10px;display:none"> <label class="boutonChoixLangue" for="choixLangueAnagEn" style="width:30%;display:none">English</label><br>
-                    </div>
-                    -->
-                    <img src="fr.png" id="selectFr" data-lg="fr" class="elementDeMenu lgSelecter lgSelected" style="display:none">
-                    <img src="en.png" id="selectEn" data-lg="en" class="elementDeMenu lgSelecter" style="margin-right:3%;display:none">
-                    <img src="zoommoins.png" id="zoomMoinsText" class="elementDeMenu" style="display:none">
-                    <img src="zoomplus.png" id="zoomPlusText" class="elementDeMenu" style="display:none">
-                </div>
-            </div>
-            <br>
-            <input class="btn" type="button" id="nouvelleLigne" value="nouvelle ligne" style="display:none">
-            <input class="btn" type="button" id="selectHelp" value="Sélectionner" style="background-color:#eaf7ed;display:none">
-            <div id="wrapIdees"></div>
-                
-                <span class="elementDeMenu" style="display:none"><br><br>Exclure du dictionnaire (séparer les mots par des blancs) :<br>
-                <textarea id="exclureDuDico"></textarea>
-                <br>
-                Notes : <br>
-                <textarea id="notesPerso"></textarea>
-                <br><br>
-                </span>
-            <div id="toggleAide" class="toggleAide">Aide</div>
-            <div id="aide">
-            <p>
-            <h4>Comment ça marche ?</h4>
-            	- <strong>Ecrivez</strong> la phrase originale, puis cliquez sur "C'est parti !"<br>
-                - <strong>Inventez</strong> des anagrammes subtiles en réagençant les lettres.<br>
-                - <strong>Postez</strong> vos trouvailles et épatez la galerie !<br><br>
-                
-                <i>Le "mode dessin" permet de déplacer librement les étiquettes, le "mode tri" permet de les classer.<br><br>
-                Selectionnez des lettres dans la phrase originale et cliquez sur "Des idées ?" pour obtenir une liste d'anagrammes. <br>
-              Le <strong>mode "strict"</strong> renvoie toutes les combinaisons de mots du dictionnaire qui utilisent toutes les lettres proposées.<br>
-              (vous pouvez choisir la taille minimum des mots à tester. Cliquez à droite sur le chiffre pour alterner entre 1 et 4 lettres. Plus le nombre de mots candidats est grand, plus le calcul prendra du temps, vous êtes prévenu !)<br>
-              Le <strong>mode "premier mot"</strong> renvoie la liste des mots du dictionnaire qui peuvent être écrits avec les lettres proposées.<br>
-              (vous pouvez ensuite, pour chaque proposition, faire de même avec les lettres restantes en cliquant dessus, ou refaire une nouvelle recherche stricte en cliquant à droite dessus)<br><br>
-              Cliquez à droite sur une lettre pour la rendre obligatoire en mode &quot;premier mot&quot;.<br>
-                Cliquez sur<strong> "Freq"</strong> pour afficher les résultats dans l'ordre de probabilité d'apparition des mots en langue française.<br>
-                Cliquez sur<strong> "Taille" </strong>pour afficher les résultats dans l'ordre de probabilité d'apparition des mots en langue française pondérée par leur taille.<br>
-                Cliquez sur<strong> "Nombre" </strong>pour trier les résultats de l'option "Freq" par nombre de mots décroissant.<br>
-                Faites un ctrl+clic sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence.<br>
-                Faites un ctrl+clic droit sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence et en taille.<br>
-                Cliquez sur shift+clic sur une suggestion du mode "premier mot" pour créer automatiquement une nouvelle sélection de lettres qui l'exclut.<br>
-                Activez l'option "[freq] boosté" pour donner la priorité aux mots ci-dessous :<br>
-                <textarea id="motsBoostes"></textarea><br><br>
-                Ajouter les mots ci-dessous au dictionnaire :<br>
-                <textarea id="motsAjoutes"></textarea><br><br>
-                <a href="http://www.gef.free.fr/anag.php" target="_blank">Testeur d'anagrammes</a><br>
-                <br><br>
-              <br>
-              </i>
-              
-            </p>
-            </div>
-        </div>
-        <div class="col-xs-6 col-md-4" id="colWrapResultats">
-            <div id="resultatAuto" class="waiting" style="display:none"></div>
-        </div>
-    </div>
-</div>
-<script src="freq_fr.js"></script>
-<script src="freq_en.js"></script>
-<script>
-
-
-
-
-/*
-dicoAnagrammesEn.sort()
-var dicoTemp = []
-
-$.each(dicoAnagrammesEn,function(i,val){
-	if(dicoTemp[val.length]===undefined){
-		dicoTemp[val.length] = []
-	}
-	dicoTemp[val.length].push(val)
-});
-var dicoTemp2 = []
-for(var i = dicoTemp.length-1; i>=1;i--){
-	if(dicoTemp[i]!==undefined){
-		for(var j = 0 ;j<=dicoTemp[i].length-1;j++){
-			dicoTemp2.push(dicoTemp[i][j])
-		}
-	
-	}
-}
-console.log(JSON.stringify(dicoTemp2))
-
-dicoAnagrammesEn.sort(function(a,b){
-	return b.length > a.length
-});
-console.log(JSON.stringify(dicoAnagrammesEn))
-*/
-var dicoAnagrammes;
-var dicoAnagrammesFr;
-var dicoAnagrammesEn;
-var exclus = []
-var worker = new Worker('anagramworker.js');
-var grosMots = [
-"cul", "bite", "couille", "couillon", "pute", "putain", "putasse", "chier", "chiotte", "chiottes",
-"culs", "bites", "couilles", "couillons", "putes", "putains", "putasses", "couillonne", "couillonnes", "baise", "baiser", "niquer",
-"con", "conne", "cons", "connes", "ducon", "abruti", "abrutie", "abrutis", "abruties",
-"zob", "foutre", "pine", "piner", "pines", "prout", "prouts", "pignouf", "troufion", "fion",
-"salope", "salopes", "saloperie", "saloperies", "salaud", "salopard",
-"batard", "batards", "zob", "caca", "pipi", "etron", 
-"anus", "anal", "pede", "gouine", "pochtron", "pochtrons", "murge", "murger", "bouseux", "travelo", "bifle", "nichon", "nichons", "nibard", "nibards",
-"enculer", "encule", "encules", "enculons", "enculera", "enculeur",
-"putes", "putains", "putasses", "petasse", "feignasse", "laidron", "bordel", "chaudasse", "poufiasse", 
-"connard", "connasse", "connards", "connasses", "connerie",
-"chiure", "chiasse", "chieur", "chieuse", "chiant", "chiee",
-"merde", "merdes", "merder", "merdasse", "merdasses", "emmerder", "emmerdeur", "emmerdant", "emmerdeurs", "merdier", "merdiers",
-"modo", "nazi"
-]
-var motsAbsentsDuDico = [
-"edriseur", "modo"
-]
-/*
-var freqTaille = [
-  0,
-  0.056849,
-  0.248682,
-  0.149541,
-  0.128023,
-  0.098911,
-  0.083954,
-  0.072485,
-  0.056343,
-  0.041238,
-  0.028069,
-  0.015902,
-  0.010009,
-  0.00517,
-  0.002887,
-  0.001239,
-  0.000474,
-  0.000131,
-  0.000072,
-  0.000018,
-  0.000003,
-  0.000001
-]
-*/
-$(function(){
-	
-	
-	$("#motsBoostes").val(grosMots.join(' '))
-
-	$("#motsAjoutes").val(motsAbsentsDuDico.join(' '))
-
-
-
-	$("#zoomMoinsText").click(function(){
-		$("#resultatAuto").css('font-size',(Number($("#resultatAuto").css('font-size').replace('px',''))-1)+"px")
-	})
-	$("#zoomPlusText").click(function(){
-		$("#resultatAuto").css('font-size',(Number($("#resultatAuto").css('font-size').replace('px',''))+1)+"px")
-	})
-	$("#exclureDuDico").change(function(){
-		updateExclus()
-	});
-	function updateExclus(){
-		exclus = $("#exclureDuDico").val().toUpperCase().split(" ")
-	}
-	updateExclus()
-	freqMots = freqFr
-	
-	$("#stopWorker").click(function(){
-		worker.terminate()
-		$(this).hide()
-	})
-	
-	/*
-	var allScores = []
-	$.each(freqFr,function(key,val){
-		if(allScores.indexOf(val)==-1)allScores.push(val)
-	})
-	allScores.sort(function(a,b){
-		return a-b;
-	})
-	$.each(freqFr,function(key,val){
-		freqFr[key] = allScores.indexOf(val)
-	})
-	console.log(JSON.stringify(freqFr))
-	*/
-	
-	
-	
-	/*
-	var newFreq = {}
-	$.each(freqEn,function(i,val){
-		var newKey = val[0].normalize('NFD').replace(/[\u0300-\u036f]/g, "").replace("'","")
-		newKey = newKey.toUpperCase()
-		var current = newFreq[newKey]===undefined ? 0 : newFreq[newKey]
-		newFreq[newKey] = Math.max(val[1],current)
-	})
-	console.log(JSON.stringify(newFreq))
-*/
-	
-	
-	/*
-	var sttrtr = [0];
-	$.each(freqMots,function(key,val){
-		if(sttrtr[key.length]===undefined)sttrtr[key.length] = 0
-		sttrtr[key.length] += Math.round(val)
-	})
-	console.log(sttrtr)
-	var total = 0
-	$.each(sttrtr,function(i,val){
-		total+=val
-	})
-	
-	console.log(total)
-	$.each(sttrtr,function(i,val){
-		sttrtr[i] = Math.round(sttrtr[i]/total*1000000)/1000000
-	})
-	console.log(sttrtr)
-	
-	var total = 0
-	$.each(sttrtr,function(i,val){
-		total+=val
-	})
-	console.log(total)
-	var arr = {}
-	$.each(freqMots,function(key,val){
-		if(key.length==3)arr[key] = val
-	})
-	console.log(arr)
-	*/
-	
-	
-	$("#helpClasser").click(function(){
-		classerPropositions($('#resultatAuto'))
-	});
-	$("#helpClasserTaille").click(function(){
-		classerPropositionsTaille($('#resultatAuto'))
-	});
-
-	$("#helpClasserTailleEtNbMots").click(function(){
-		classerPropositionsTailleEtNbMots($('#resultatAuto'))
-	});
-	function classerPropositions(wrapper){
-		var motsBoostes = $("#motsBoostes").val().split(' ')
-		var boost = $("#activerBoost").is(':checked')
-		wrapper.children(".proposition").each(function(){
-			
-			if($(this).attr('data-rangfreq')===undefined){
-				var text = $(this).children('.captionSuggestion').html().toUpperCase().split(" ")
-				var score = 0
-				$.each(text,function(i,elt){
-					if(elt.indexOf("(")==-1&&motsBoostes.indexOf(elt.toLowerCase())!=-1&&boost){
-						score+=1000000
-					}else{
-						if(elt.indexOf("(")==-1&&freqMots[elt]===undefined){
-							score = 0;
-							return false;
-						}
-						if(elt.indexOf("(")==-1&&freqMots[elt]!==undefined){
-							score+=freqMots[elt]
-						}
-					}
-				})
-				var score = score/text.length
-				$(this).attr('data-rangfreq',score)
-			}
-		});
-		var $wrapper = wrapper;
-		$wrapper.find('.proposition').sort(function(a, b) {
-			return +b.getAttribute('data-rangfreq') - +a.getAttribute('data-rangfreq');
-		})
-		.appendTo($wrapper);
-	}
-	function classerPropositionsTaille(wrapper){
-		wrapper.children(".proposition").each(function(){
-			if($(this).attr('data-rangtaille')===undefined){
-				var text = $(this).children('.captionSuggestion').html().toUpperCase().split(" ")
-				var score = Number.MAX_SAFE_INTEGER
-				$.each(text,function(i,elt){
-					if(elt.indexOf("(")==-1&&freqMots[elt]===undefined){
-						score = 0;
-					}
-					if(elt.indexOf("(")==-1&&freqMots[elt]!==undefined){
-						var length = Math.max(2,elt.length)
-						score = Math.min(score,freqMots[elt]*Math.pow(length,8))
-					}
-				})
-				$(this).attr('data-rangtaille',score)
-			}
-		});
-		
-		var $wrapper = wrapper;
-
-		$wrapper.find('.proposition').sort(function(a, b) {
-			return +b.getAttribute('data-rangtaille') - +a.getAttribute('data-rangtaille');
-		})
-		.appendTo($wrapper);
-	}
-
-
-
-
-
-	function classerPropositionsTailleEtNbMots(wrapper){
-
-		var motsBoostes = $("#motsBoostes").val().split(' ')
-		var boost = $("#activerBoost").is(':checked')
-		wrapper.children(".proposition").each(function(){
-			
-			if($(this).attr('data-rangfreq')===undefined){
-				var text = $(this).children('.captionSuggestion').html().toUpperCase().split(" ")
-				var score = 0
-				$.each(text,function(i,elt){
-					if(elt.indexOf("(")==-1&&motsBoostes.indexOf(elt.toLowerCase())!=-1&&boost){
-						score+=1000000
-					}else{
-						if(elt.indexOf("(")==-1&&freqMots[elt]===undefined){
-							score = 0;
-							return false;
-						}
-						if(elt.indexOf("(")==-1&&freqMots[elt]!==undefined){
-							score+=freqMots[elt]
-						}
-					}
-				})
-				var score = score/text.length
-				$(this).attr('data-rangfreq',score)
-			}
-			if($(this).attr('data-rangtaille')===undefined){
-				var text = $(this).children('.captionSuggestion').html().toUpperCase().split(" ")
-				if(text.indexOf("(")==-1){
-					var score = Number.MAX_SAFE_INTEGER
-					$.each(text,function(i,elt){
-						if(freqMots[elt]===undefined){
-							score = 0;
-						}
-						if(freqMots[elt]!==undefined){
-							score = Math.min(score,freqMots[elt]*Math.pow(elt.length,8))
-						}
-					})
-					$(this).attr('data-rangtaille',score)
-				}
-			}
-			if($(this).attr('data-nbmots')===undefined){
-				var text = $(this).children('.captionSuggestion').html().toUpperCase().split(" ")
-				if(text.indexOf("(")==-1){
-					var nbMots = text.length
-					$(this).attr('data-nbmots',nbMots)
-				}
-			}
-		});
-		wrapper.children(".proposition").each(function(){
-			$(this).attr('data-rangnbmots',$(this).attr('data-rangfreq')/Math.pow($(this).attr('data-nbmots'),8))
-		});
-		
-		var $wrapper = wrapper;
-
-		$wrapper.find('.proposition').sort(function(a, b) {
-			return +a.getAttribute('data-nbmots') - +b.getAttribute('data-nbmots') || +b.getAttribute('data-rangfreq') - +a.getAttribute('data-rangfreq')
-		})
-		.appendTo($wrapper);
-	}
-
-
-
-
-
-
-
-
-
-
-
-	function ecrireAutoAnagramme(text){
-		$(".blocPhonemeOblig").removeClass('blocPhonemeOblig')
-		$("#original").find(".blocPhoneme").addClass("phonemeAutoAnagrammes")
-		$.each(text.split(""),function(i,lettre){
-			var laLettre = lettre
-			$("#original").find(".phonemeAutoAnagrammes>.phonemeAnagrammes").each(function(){
-				if($(this).html().toUpperCase()==laLettre.toUpperCase()){
-					$(this).parent().removeClass('phonemeAutoAnagrammes')
-					return false;
-				}
-			})
-		})
-	}
-
-	$(".lgSelecter").click(function(){
-		$(".lgSelecter").toggleClass('lgSelected')
-		$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','disabled')
-		if($(".lgSelected").attr('data-lg')=="en"){
-			freqMots = freqEn
-		}else{
-			freqMots = freqFr
-		}
-		$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','')
-	})
-	$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','')
-	/*
-	$("[name='choixLangueAnag']").change(function(){
-		$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','disabled')
-		if($(this).attr('id')=="choixLangueAnagEn"){
-			if(dicoAnagrammesEn===undefined){
-				$.ajax({
-					url: "dico_anagrammes_en_op.js",
-					dataType: "script",
-					success: function(){
-						dicoAnagrammes = dicoAnagrammesEn
-						freqMots = freqEn
-						$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','')
-					}
-				});
-			}else{
-				dicoAnagrammes = dicoAnagrammesEn
-				freqMots = freqEn
-				$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','')
-			}
-		}else{
-			dicoAnagrammes = dicoAnagrammesFr
-			freqMots = freqFr
-			$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','')
-		}
-	});
-	*/
-	var tailleMotMini = 4
-	$("#tailleMotMini").val(tailleMotMini)
-	/*
-	$("#tailleMotMini").on('change keyup click',function(){
-		$(this).val(Math.max(1,$(this).val()))
-		tailleMotMini = $(this).val()
-		var sonsATraiter = [];
-		$(".phonemeAutoAnagrammes").each(function(){
-			sonsATraiter.push(phonemesAnagrammes[$(this).find('.phonemeAnagrammes').html().toLowerCase()][0]);
-		});
-		input = sonsATraiter.join('').toUpperCase()
-		//var localDico = findAllWords(input); 
-		//$("#nbCandidats").html('('+localDico.length+' candidats)')
-	})
-	*/
-
-
-	
-	$("body").on('contextmenu','.blocPhoneme',function(e){
-		e.preventDefault()
-		$(this).toggleClass("blocPhonemeOblig")
-	});
-	$("#help").click(function(){
-		$("#resultatAuto").html("...")
-		tailleMotMini = $("#tailleMotMini").val()
-		changeSelecting(false)
-		$("#resultatAuto").addClass('waiting');
-		setTimeout(function(){
-			$("#resultatAuto").html("")
-			//chercheParMots()
-			
-			var sonsATraiter = [];
-			$(".phonemeAutoAnagrammes").each(function(){
-				sonsATraiter.push(phonemesAnagrammes[$(this).find('.phonemeAnagrammes').html().toLowerCase()][0]);
-			});
-			input = sonsATraiter.join('').toUpperCase()
-			
-			
-			$("#stopWorker").show()
-			worker.terminate()
-			worker = undefined
-			worker = new Worker('anagramworker.js');
-			$("#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots").show()
-			worker.addEventListener('message', function(e) {
-				if(e.data=="calcultermine"){
-					$("#stopWorker").hide()
-					return false;
-				}
-				$("#resultatAuto").append('<div class="proposition last"><span class="captionSuggestion">'+e.data.toLowerCase()+'</span></div>')
-			}, false);
-
-			var l = $(".lgSelected").attr('data-lg')
-			var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-			worker.postMessage(["chercheParMots",[input,$("#tailleMotMini").val(),exclus],l,motsAjoutes]); // Send data to our worker.
-
-
-
-
-
-			
-			$("#resultatAuto").removeClass('waiting');
-		},100);
-	});
-	$("body").on('click','.reduireProposition',function(){
-		$(this).parent().find('.proposition').remove()
-		$(this).parent().addClass('last')
-	});
-	$("body").on('click','.proposition:not(".last")>.captionSuggestion',function(e){
-		e.stopPropagation()
-		e.preventDefault()
-		if (e.ctrlKey) {
-			classerPropositions($(this).parent())
-			return false
-		}
-		if (e.shiftKey) {
-			return false
-		}
-		$(this).parent().find('.proposition').remove()
-		$(this).parent().addClass('last')
-	});
-/*
-	$("body").on('click','.proposition:not(.last)',function(e){
-		e.stopPropagation()
-		e.preventDefault()
-		if (e.ctrlKey) {
-			classerPropositions($(this))
-		}
-	})*/
-	$("body").on('contextmenu','.proposition:not(.last)',function(e){
-		e.stopPropagation()
-		e.preventDefault()
-		if (e.ctrlKey) {
-			classerPropositionsTaille($(this))
-		}
-	})
-	$("#helpFirst").click(function(){
-		$("#resultatAuto").html("...")
-		tailleMotMini = $("#tailleMotMini").val()
-		changeSelecting(false)
-		$("#resultatAuto").addClass('waiting');
-		setTimeout(function(){
-			$("#resultatAuto").html("")
-			var sonsATraiter = [];
-			$(".phonemeAutoAnagrammes").each(function(){
-				sonsATraiter.push(phonemesAnagrammes[$(this).find('.phonemeAnagrammes').html().toLowerCase()][0]);
-			});
-			input = sonsATraiter.join('').toUpperCase()
-			var obligs = ""
-			$(".blocPhonemeOblig").each(function(){
-				obligs = obligs+phonemesAnagrammes[$(this).find('.phonemeAnagrammes').html().toLowerCase()][0].toUpperCase()
-			});
-
-
-
-			$("#stopWorker").show()
-			worker.terminate()
-			worker = undefined
-			worker = new Worker('anagramworker.js');
-			$("#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots").show()
-			worker.addEventListener('message', function(e) {
-				if(e.data=="calcultermine"){
-					$("#stopWorker").hide()
-					return false;
-				}
-				$("#resultatAuto").append('<div class="proposition last" data-reste="'+e.data[1]+'"><span class="captionSuggestion">'+e.data[0].toLowerCase()+' ('+e.data[1]+')</span></div>')
-			}, false);
-			var l = $(".lgSelected").attr('data-lg')
-			var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-			worker.postMessage(["findFirsts",[input,obligs,exclus],l,motsAjoutes]); // Send data to our worker.
-			$("#resultatAuto").removeClass('waiting');
-		},100);
-	});
-
-
-
-	$("body").on('click','.proposition.last',function(e){
-		e.preventDefault()
-		if (e.ctrlKey) {
-			return false
-		}
-		if (e.shiftKey) {
-			if($(this).text().indexOf('(')!==-1){
-				ecrireAutoAnagramme($(this).text().split(" ")[0])
-			}
-			return false
-		}
-		var prop = $(this)
-		prop.removeClass("last")
-		if(prop.attr('data-reste')==0){
-			return false
-		}
-		//var soluces = findFirsts(prop.attr('data-reste').toUpperCase());
-
-
-		$("#stopWorker").show()
-		worker.terminate()
-		worker = undefined
-		worker = new Worker('anagramworker.js');
-		$("#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots").show()
-		worker.addEventListener('message', function(e) {
-			if(e.data=="calcultermine"){
-				$("#stopWorker").hide()
-				return false;
-			}
-			var newProp = $('<div class="proposition last" data-reste="'+e.data[1]+'"><span class="captionSuggestion">'+e.data[0].toLowerCase()+'</span> ('+e.data[1]+')<span class="reduireProposition">-</span></div>')
-			prop.append(newProp)
-			newProp.css('padding-left',newProp.parents().length*2+"px");
-		}, false);
-		var l = $(".lgSelected").attr('data-lg')
-		var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-		worker.postMessage(["findFirsts",[prop.attr('data-reste').toUpperCase(),"",exclus],l,motsAjoutes]); 
-	});
-
-
-	$("body").on('contextmenu','.proposition.last',function(e){
-		e.preventDefault()
-		var prop = $(this)
-		prop.removeClass("last")
-		if(prop.attr('data-reste')==0){
-			return false
-		}
-
-		$("#stopWorker").show()
-		worker.terminate()
-		worker = undefined
-		worker = new Worker('anagramworker.js');
-		$("#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots").show()
-		worker.addEventListener('message', function(e) {
-			if(e.data=="calcultermine"){
-				$("#stopWorker").hide()
-				return false;
-			}
-			var newProp = $('<div class="proposition last"><span class="captionSuggestion">'+e.data.toLowerCase()+'</span></div>')
-			prop.append(newProp)
-			newProp.css('padding-left',newProp.parents().length*2+"px");
-		}, false);
-		var l = $(".lgSelected").attr('data-lg')
-		var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-		worker.postMessage(["getChercheParMots",[prop.attr('data-reste').toUpperCase(),$("#tailleMotMini").val(),exclus],l,motsAjoutes]); // Send data to our worker.
-
-	});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	var isLocked = false;
-
-	var phonemesAnagrammes = {
-
-		"a":["a"],
-		"z":["z"],
-		"e":["e"],
-		"r":["r"],
-		"t":["t"],
-		"y":["y"],
-		"u":["u"],
-		"i":["i"],
-		"o":["o"],
-		"p":["p"],
-		
-		"q":["q"],
-		"s":["s"],
-		"d":["d"],
-		"f":["f"],
-		"g":["g"],
-		"h":["h"],
-		"j":["j"],
-		"k":["k"],
-		"l":["l"],
-		"m":["m"],
-		
-		"w":["w"],
-		"x":["x"],
-		"c":["c"],
-		"v":["v"],
-		"b":["b"],
-		"n":["n"]
-	}
-
-
-
-	$("#invertHelp").click(function(){
-		$("#original>.blocPhoneme").toggleClass('phonemeAutoAnagrammes')
-	});
-
-	$("#selectTout").click(function(){
-		$("#original>.blocPhoneme").addClass('phonemeAutoAnagrammes')
-	});
-	var isSelecting = false;
-	function changeSelecting(bool){
-		if(bool){
-			$(".phonemeAutoAnagrammes").removeClass('phonemeAutoAnagrammes')
-			$("#selectHelp").css('background-color','lightblue')
-			$(".lignePhonemesWrap>.blocPhoneme").addClass('selectable')
-		}else{
-			$("#selectHelp").css('background-color','white')
-			$(".lignePhonemesWrap>.blocPhoneme").removeClass('selectable')
-		}
-		isSelecting = bool;
-	}
-	
-	$("#selectHelp").click(function(){
-		if(isSelecting){
-			changeSelecting(false)
-		}else{
-			changeSelecting(true)
-		}
-	});
-
-	$("body").on('mouseup','.blocPhoneme',function(){
-		var $this = $(this)
-		var pho = $this.find('.phonemeAnagrammes').html()
-		if(isSelecting&&$(this).parent().attr('id')!="original"){
-			var phoneme = $("#original>.blocPhoneme").not(".phonemeAutoAnagrammes").filter(function() {
-				return $(this).find('.phonemeAnagrammes').html() == pho
-			}).eq(0)
-			phoneme.closest('.blocPhoneme').addClass('phonemeAutoAnagrammes')
-			$(this).removeClass('selectable')
-		}
-	});
-	
-	
-
-	$("#original").sortable()
-	$("body").on("click","#original>.blocPhoneme",function(){
-		if(isLocked&&!isSelecting){
-			$(this).toggleClass("phonemeAutoAnagrammes");
-		}
-	})
-
-
-	$("#phraseOriginale").keyup(function(){
-		if(!isLocked){
-			var str = $(this).val()
-			str = str.replace(/[èéêë]/g,"e") 
-			str = str.replace(/[à]/g,"a") 
-			str = str.replace(/[ç]/g,"c") 
-			str = str.replace(/[^a-zA-Z]+/g, '')
-			$("#original").sortable("destroy").html('')
-			$.each(str.split(''),function(i,elt){
-				$("#original").append(getEltPhoneme(elt,"deletable"));
-			});
-			$("#original").sortable()
-		}
-
-	});
-
-
-
-	$(".toggleAide").click(function(){
-		$("#aide").slideToggle();
-	});
-	$("#aide").slideToggle();
-	$("#wrapIdees").sortable({
-		delay: 150,
-		"handle":".enteteLigne"
-	});
-	$("#clear").click(function(){
-		$("#motDeDepart").html('');
-	});
-	
-	$("#reinit").click(function(){
-		$("#anagScore").html('')
-		$("#original").html('');
-		$("#original").sortable()
-		$("#wrapIdees").html('');
-		$("#creerOriginal").show();
-		$("#phraseOriginale").show()
-		$("#reinit,#nouvelleLigne,#help,#resultatAuto,#selectHelp,#invertHelp,#tailleMotMini,#nbCandidats,#helpFirst,#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots,#stopWorker,.boutonChoixLangue,.elementDeMenu").hide();
-		isLocked = false
-		$("#phraseOriginale").prop('disabled',false).val('')
-	});
-	$("#nouvelleLigne").click(function(){
-		appendLigne(lignetoJson($("#original")),"prepend")
-	});
-	$("#creerOriginal").click(function(evt){
-		var contrepet = "";
-		var phosInContrepet = []
-		$("#original").find('.phonemeAnagrammes').each(function(){
-			phosInContrepet.push($(this).html())
-		});
-		contrepet = phosInContrepet.join('')
-
-		
-		isLocked = true
-		$("#original").find('.deletePhoneme').remove();
-		$("#original").sortable("destroy")
-		appendLigne(lignetoJson($("#original")))
-		$("#creerOriginal").hide();
-		$("#resultatAuto").removeClass('waiting').html('')
-		$("#reinit,#nouvelleLigne,#help,#resultatAuto,#selectHelp,#invertHelp,#tailleMotMini,#nbCandidats,#helpFirst,.boutonChoixLangue,.elementDeMenu").show();
-		$("#phraseOriginale").hide()
-		$("#original>.blocPhoneme").trigger('click')
-		$("#shareUrl").html(contrepet)
-		$("#phraseOriginale").prop('disabled',true)
-		$("#tailleMotMini").trigger('change')
-	});
-	
-	$("body").on("click",".deletePhoneme",function(){
-		$(this).closest('.blocPhoneme').remove();
-	})
-	$("body").on("mouseup",".modeLigne",function(){
-		var ligne = $(this).closest('.ligne')
-		var modeActuel = ligne.attr('data-mode');
-		if(modeActuel == "tri"){
-			ligne.find('.lignePhonemesWrap').sortable("destroy");
-			ligne.animate({"height":"300px"},500,function(){
-				ligne.resizable()
-			});
-			
-			ligne.find('.blocPhoneme').draggable({
-				delay:20,
-				containment:ligne
-			})
-			ligne.find('.modeLigne').html('Tri')
-			ligne.attr('data-mode','dessin')
-		}else{
-			ligne.find('.blocPhoneme').draggable("destroy");
-			ligne.resizable("destroy")
-			ligne.animate({"height":""},500,function(){
-				ligne.css('height','');
-			});
-			//
-			var phonemesAnagrammes2 = [];
-			ligne.find('.blocPhoneme').each(function(){
-				phonemesAnagrammes2.push([$(this).find('.phonemeAnagrammes').html(),parseInt($(this).position().left)]);
-			});
-			phonemesAnagrammes2.sort(function(a,b){
-				return a[1] - b[1]
-			});
-			ligne.find('.lignePhonemesWrap').html('');
-			$.each(phonemesAnagrammes2,function(i,elt){
-				ligne.find('.lignePhonemesWrap').append(getEltPhoneme(elt[0],"notDeletable"))
-			})
-			ligne.find('.lignePhonemesWrap').sortable();
-			ligne.find('.modeLigne').html('Dessin')
-			ligne.attr('data-mode','tri')
-		}
-	})
-	
-	$("body").on("mouseup",".dupliquerLigne",function(){
-		appendLigne(lignetoJson($(this).closest('.ligne')),$(this).closest('.ligne'))
-	})
-	$("body").on("mouseup",".supprimerLigne",function(){
-		$(this).closest('.ligne').remove();
-	})
-	
-	function appendLigne(data,after){
-		var ligne = $('<div class="ligne" data-mode="tri"><div class="enteteLigne"><input type="text" class="aideMemoire"><div class="blocCommandesLigne"><div class="modeLigne">Dessin</div><div class="dupliquerLigne">+</div><div class="supprimerLigne">X</div></div></div><div class="lignePhonemesWrap"></div></div>')
-		$.each(data,function(i, elt){
-			ligne.find('.lignePhonemesWrap').append(getEltPhoneme(elt,"notDeletable"));
-		});
-		ligne.find('.lignePhonemesWrap').sortable();
-		if(after=="prepend"){
-			$("#wrapIdees").prepend(ligne);
-		}else if(after===undefined){
-			$("#wrapIdees").append(ligne);
-		}else{
-			after.after(ligne);
-		}
-	}
-	
-	function lignetoJson(ligne){
-		var retour = [];
-		ligne.find('.phonemeAnagrammes').each(function(){
-			retour.push($(this).html());
-		});
-		return retour;
-	}
-	function getEltPhoneme(phoneme,deletable){
-		var deleteStr = "";
-		if(deletable=="deletable"){
-			deleteStr = '<div class="deletePhoneme">x</div>'
-		}
-		return $('<div class="blocPhoneme"><div class="phonemeAnagrammes">'+phoneme+'</div>'+deleteStr+'</div>')
-	}
-
-
-
-	var getUrlParameter = function getUrlParameter(sParam) {
-		var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-			sURLVariables = sPageURL.split('&'),
-			sParameterName,
-			i;
-	
-		for (i = 0; i < sURLVariables.length; i++) {
-			sParameterName = sURLVariables[i].split('=');
-	
-			if (sParameterName[0] === sParam) {
-				return sParameterName[1] === undefined ? true : sParameterName[1];
-			}
-		}
-	};
-	$("#tailleMotMini").contextmenu(function(e){
-		e.preventDefault()
-		if($(this).val()==1){
-			$(this).val(4)
-		}else{
-			$(this).val(1)
-		}
-	})
-	if(getUrlParameter('lettres')!==undefined){
-		$("#creerOriginal").trigger('click')
-		//$("#help").trigger('click')
-		$(".modeLigne").eq(0).trigger('click');
-	}
-	$("#phraseOriginale").trigger('keyup')
-});
-
-$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#helpClasserTailleEtNbMots,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','disabled')
-/*
-$.ajax({
-	url: "dico_anagrammes.js",
-	dataType: "script",
-	success: function(){
-		$("#help,#helpFirst").prop('disabled','')
-	}
-});
-*/
-/*
-$.ajax({
-	url: "dico_anagrammes_op.js",
-	dataType: "script",
-	success: function(){
-		$("#help,#helpFirst,#helpClasser,#helpClasserTaille,#stopWorker,.boutonChoixLangue,.elementDeMenu").prop('disabled','')
-		dicoAnagrammesFr = dicoAnagrammes
-
-	}
-});
-*/
-
-</script>
-
-<!--<script src="dico_anagrammes.js"></script>-->
-
-
-</div>
-
-  </body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>OuLiPo</title>
+		<link href="bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		<link
+		href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
+		<!--<link href='https://fonts.googleapis.com/css?family=Alegreya:400,400italic,700,700italic' rel='stylesheet' type='text/css'>-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="lasoeurdupape" data-description="Support me on Buy me a coffee!" data-message="Merci de votre soutien !" data-color="#40DCA5" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+	</head>
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-xs-6 col-md-8">
+					<div class="row">
+						<div class="col-xs-12 col-md-7">
+							<input class="btn" type="button" id="reinit" value="Réinitialiser" style="display:none">
+							<input type="text" id="selectLettresParTexte" style="display:none">
+
+							<input type="text" id="phraseOriginale" class="aideMemoire" value="Phrase originale"><span id="exemplePho"></span>
+							<div style="display:inline-block" id="anagScore"></div>
+							<div id="original" class="ligne"></div>
+							<input class="btn" type="button" id="creerOriginal" value="C'est parti !">
+							<span id="shareUrl"></span>
+						</div>
+						<div class="col-xs-12 col-md-5">
+							<div class="row">
+								<div class="col-xs-6 col-md-6">
+									<br>
+
+									<input class="btn elementDeMenu" type="button" id="selectTout" value="Tout sélectionner" style="background-color:#eaf7ed;display:none">
+									<input class="btn" type="button" id="invertHelp" value="Inverser" style="background-color:#eaf7ed;display:none"><br>
+									<br>
+									<input class="btn" type="button" id="help" value="Des idées ? (strict)" style="background-color:#eaf7ed;display:none">
+									<input type="number" id="tailleMotMini" style="display:none" min="1" step="1">
+									<span id="nbCandidats"></span><br>
+
+									<input class="btn" type="button" id="helpFirst" value="Des idées ? (1er mot)" style="background-color:#eaf7ed;display:none"><br><br>
+									<input class="btn elementDeMenu" type="button" id="helpClasser" value="Freq" style="background-color:#eaf7ed;display:none">
+									<input class="btn elementDeMenu" type="button" id="helpClasserTaille" value="Taille" style="background-color:#eaf7ed;display:none">
+									<input class="btn elementDeMenu" type="button" id="helpClasserTailleEtNbMots" value="Nombre" style="background-color:#eaf7ed;display:none"><br>
+									<input class="btn elementDeMenu boutonClassementVarianceFrequence" type="button" id="helpClasserFiltrerQualiteVarianceFrequence" value="var->freq" style="background-color:#eaf7ed;display:none">
+									<input class="btn elementDeMenu boutonClassementVarianceFrequence" type="button" id="helpClasserFiltrerQualiteFrequenceVariance" value="freq->var" style="background-color:#eaf7ed;display:none">
+
+									<br>
+									<br>
+									<span class="elementDeMenu" style="display:none">
+										<input type="checkbox" id="activerBoost" unchecked>
+										<label for="activerBoost">[Freq] boosté</label>
+
+
+										<br>
+										<input type="checkbox" id="filtreExigeant" checked>
+										<label for="filtreExigeant">Mots de fréquence > 0</label>
+
+
+									</span><br>
+									<img src="fr.png" id="selectFr" data-lg="fr" class="elementDeMenu lgSelecter lgSelected" style="display:none">
+									<img src="en.png" id="selectEn" data-lg="en" class="elementDeMenu lgSelecter" style="margin-right:3%;display:none">
+									<img src="zoommoins.png" id="zoomMoinsText" class="elementDeMenu" style="display:none">
+									<img src="zoomplus.png" id="zoomPlusText" class="elementDeMenu" style="display:none">
+									<br><br>
+
+								</div>
+								<div class="col-xs-6 col-md-6">
+									<span class="elementDeMenu" style="display:none">
+										<br>
+										<input style="width:50px;" type="number" value="50" id="filterBelowFrequence">
+										Fréquence min
+										<br>
+
+										<input type="number" id="nbMotsMin" value="0" style="width:50px" min="1" max="10">
+
+										mots min
+										<br>
+
+										<input type="number" id="nbMotsMax" value="7" style="width:50px" min="1" max="10">
+
+										mots max
+										<br>
+										<input type="checkbox" id="filterBelowFrequenceAutoRemove" checked><label for="filterBelowFrequenceAutoRemove">Supprimer/cacher</label><br>
+
+
+										<button class="btn" id="buttonFiltrerBelowFrequence" style="background-color:#eaf7ed;">Filtrer</button>
+										<br>
+										<span id="wrapProgressFilter" style="display:none;">
+											<span id="progressFilter"></span>
+										</span>
+
+
+										<br>
+										<br>
+										<br>
+
+										<input type="checkbox" id="filterBelowFrequenceAuto" checked><label for="filterBelowFrequenceAuto">auto filter</label>
+
+										<br>
+										<br>
+
+
+										<input class="btn" type="button" id="stopWorker" value="Arrêter la recherche" style="background-color:#eaf7ed;display:none">
+										<br>
+										<span id="nombrePropositions"></span>
+									</span>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<br>
+					<input class="btn" type="button" id="nouvelleLigne" value="nouvelle ligne" style="display:none">
+					<input class="btn" type="button" id="selectHelp" value="Sélectionner" style="background-color:#eaf7ed;display:none">
+					<div id="wrapIdees"></div>
+
+					<span class="elementDeMenu" style="display:none"><br><br>
+						Exclure du dictionnaire (séparer les mots par des blancs) :<br>
+						<textarea id="exclureDuDico"></textarea>
+						<br>
+						Expressions obligatoires :<br>
+
+						<textarea id="expressionsObligatoires"></textarea>
+						<br>
+
+						Notes :
+						<br>
+						<textarea id="notesPerso"></textarea>
+						<br><br>
+					</span>
+					<div id="toggleAide" class="toggleAide">Aide</div>
+					<div id="aide">
+						<p>
+							<h4>Comment ça marche ?</h4>
+							-
+							<strong>Ecrivez</strong>
+							la phrase originale, puis cliquez sur "C'est parti !"<br>
+							-
+							<strong>Inventez</strong>
+							des anagrammes subtiles en réagençant les lettres.<br>
+							-
+							<strong>Postez</strong>
+							vos trouvailles et épatez la galerie !<br><br>
+
+							<i>Le "mode dessin" permet de déplacer librement les étiquettes, le "mode tri" permet de les classer.<br><br>
+								Selectionnez des lettres dans la phrase originale et cliquez sur "Des idées ?" pour obtenir une liste d'anagrammes.
+								<br>
+								Le
+								<strong>mode "strict"</strong>
+								renvoie toutes les combinaisons de mots du dictionnaire qui utilisent toutes les lettres proposées.<br>
+								(vous pouvez choisir la taille minimum des mots à tester. Cliquez à droite sur le chiffre pour alterner entre 1 et 4 lettres. Plus le nombre de mots candidats est grand, plus le calcul prendra du temps, vous êtes prévenu !)<br>
+								Le
+								<strong>mode "premier mot"</strong>
+								renvoie la liste des mots du dictionnaire qui peuvent être écrits avec les lettres proposées.<br>
+								(vous pouvez ensuite, pour chaque proposition, faire de même avec les lettres restantes en cliquant dessus, ou refaire une nouvelle recherche stricte en cliquant à droite dessus)<br><br>
+								Cliquez à droite sur une lettre pour la rendre obligatoire en mode &quot;premier mot&quot;.<br>
+								Cliquez sur<strong>
+									"Freq"</strong>
+								pour afficher les résultats dans l'ordre de probabilité d'apparition des mots en langue française.<br>
+								Cliquez sur<strong>
+									"Taille"
+								</strong>pour afficher les résultats dans l'ordre de probabilité d'apparition des mots en langue française pondérée par leur taille.<br>
+								Cliquez sur<strong>
+									"Nombre"
+								</strong>pour trier les résultats de l'option "Freq" par nombre de mots décroissant.<br>
+								Faites un ctrl+clic sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence.<br>
+								Faites un ctrl+clic droit sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence et en taille.<br>
+								Cliquez sur shift+clic sur une suggestion du mode "premier mot" pour créer automatiquement une nouvelle sélection de lettres qui l'exclut.<br>
+								Activez l'option "[freq] boosté" pour donner la priorité aux mots ci-dessous :<br>
+								<textarea id="motsBoostes"></textarea><br><br>
+								Ajouter les mots ci-dessous au dictionnaire :<br>
+								<textarea id="motsAjoutes"></textarea><br><br>
+								<a href="http://www.gef.free.fr/anag.php" target="_blank">Testeur d'anagrammes</a><br>
+								<br><br>
+								<br>
+							</i>
+
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-4" id="colWrapResultats">
+					<div id="resultatAuto" class="waiting" style="display:none"></div>
+				</div>
+			</div>
+		</div>
+		<script src="js/freq_fr.js"></script>
+		<script src="js/dico_fr.js"></script>
+
+		<script src="js/freq_en.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/analyse_text.js"></script>
+
+	</body>
 </html>
