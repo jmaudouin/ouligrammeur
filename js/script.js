@@ -7,21 +7,21 @@ var exclus = []
 
 var worker = new Worker('js/anagramworker.js');
 var grosMots = [
-    "cul", "bite", "couille", "couillon", "pute", "putain", "putasse", "chier", "chiotte", "chiottes",
+    "merde", "con", "bordel", "chiant", "putain", "chier", "cul", "chiotte", "chiottes",
     "culs", "bites", "couilles", "couillons", "putes", "putains", "putasses", "couillonne", "couillonnes", "baise", "baiser", "niquer",
-    "con", "conne", "cons", "connes", "ducon", "abruti", "abrutie", "abrutis", "abruties",
+    "conne", "cons", "connes", "ducon", "abruti", "abrutie", "abrutis", "abruties",
     "zob", "foutre", "pine", "piner", "pines", "prout", "prouts", "pignouf", "troufion", "fion",
-    "salope", "salopes", "saloperie", "saloperies", "salaud", "salopard",
-    "batard", "batards", "zob", "caca", "pipi", "etron",
-    "anus", "anal", "pede", "gouine", "pochtron", "pochtrons", "murge", "murger", "bouseux", "travelo", "bifle", "nichon", "nichons", "nibard", "nibards",
+    "salope", "salopes", "saloperie", "saloperies", "salaud", "salopard", "bite", "couille", "couillon",
+    "zob", "caca", "pipi", "etron", "pute", "putasse",
+    "anus", "anal", "pochtron", "pochtrons", "murge", "murger", "bouseux", "bifle", "nichon", "nichons", "nibard", "nibards",
     "enculer", "encule", "encules", "enculons", "enculera", "enculeur",
-    "putes", "putains", "putasses", "petasse", "feignasse", "laidron", "bordel", "chaudasse", "poufiasse",
+    "putes", "putains", "putasses", "petasse", "feignasse", "laidron", "chaudasse", "poufiasse",
     "connard", "connasse", "connards", "connasses", "connerie",
-    "chiure", "chiasse", "chieur", "chieuse", "chiant", "chiee",
-    "merde", "merdes", "merder", "merdasse", "merdasses", "emmerder", "emmerdeur", "emmerdant", "emmerdeurs", "merdier", "merdiers"
+    "chiure", "chiasse", "chieur", "chieuse", "chiee",
+    "merdes", "merder", "merdasse", "merdasses", "emmerder", "emmerdeur", "emmerdant", "emmerdeurs", "merdier", "merdiers"
 ]
 var motsAbsentsDuDico = [
-    "edriseur", "modo"
+
 ]
 
 
@@ -779,7 +779,6 @@ $(function () {
     $(".toggleAide").click(function () {
         $("#aide").slideToggle();
     });
-    $("#aide").slideToggle();
     $("#wrapIdees").sortable({
         delay: 150,
         "handle": ".enteteLigne"

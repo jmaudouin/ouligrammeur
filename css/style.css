@@ -276,3 +276,7 @@ hover {
     display: inline-block;
     background-color: green;
 }
+
+#aide {
+    display: none;
+}
