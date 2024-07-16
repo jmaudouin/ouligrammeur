@@ -1,8 +1,5 @@
 self.addEventListener('message', function (e) {
 
-
-
-
     importScripts("dico_fr.js");
     importScripts("dico_en.js");
 
@@ -148,9 +145,6 @@ self.addEventListener('message', function (e) {
         return words;
 
     }
-
-
-
 
     if (e.data[0] == "findFirsts") {
         if (e.data[2] == "fr") {

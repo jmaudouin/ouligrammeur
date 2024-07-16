@@ -18,8 +18,7 @@ var grosMots = [
     "putes", "putains", "putasses", "petasse", "feignasse", "laidron", "bordel", "chaudasse", "poufiasse",
     "connard", "connasse", "connards", "connasses", "connerie",
     "chiure", "chiasse", "chieur", "chieuse", "chiant", "chiee",
-    "merde", "merdes", "merder", "merdasse", "merdasses", "emmerder", "emmerdeur", "emmerdant", "emmerdeurs", "merdier", "merdiers",
-    "modo", "nazi"
+    "merde", "merdes", "merder", "merdasse", "merdasses", "emmerder", "emmerdeur", "emmerdant", "emmerdeurs", "merdier", "merdiers"
 ]
 var motsAbsentsDuDico = [
     "edriseur", "modo"
@@ -28,32 +27,7 @@ var motsAbsentsDuDico = [
 
 let nbPropositions = 0
 let nbPropositionsVisibles = 0
-/*
-var freqTaille = [
-  0,
-  0.056849,
-  0.248682,
-  0.149541,
-  0.128023,
-  0.098911,
-  0.083954,
-  0.072485,
-  0.056343,
-  0.041238,
-  0.028069,
-  0.015902,
-  0.010009,
-  0.00517,
-  0.002887,
-  0.001239,
-  0.000474,
-  0.000131,
-  0.000072,
-  0.000018,
-  0.000003,
-  0.000001
-]
-*/
+
 let singleLetters = ["C", "D", "J", "L", "M", "N", "S", "T"]
 let voyelles = ["A", "E", "I", "O", "U", "Y"]
 
@@ -111,7 +85,6 @@ function updateNbPropositions() {
 let wrapProgressFilter = $("#wrapProgressFilter")
 let progressFilter = $("#progressFilter")
 function filtrer(forceSuppr = false) {
-    console.log('filter')
     let propositions = $(".proposition")
     wrapProgressFilter.show()
     let progress = 0
@@ -278,7 +251,6 @@ $(function () {
 
 
     function filtrerQualiteVariance(critere1, critere2) {
-        console.log("filtrerQualiteVariance", critere1, critere2)
         const elements = Array.from(document.querySelectorAll('[' + critere1 + '][' + critere2 + ']'));
         elements.sort((b, a) => {
             const scoreFrequenceA = parseFloat(a.getAttribute(critere1));
@@ -411,7 +383,6 @@ $(function () {
     })
 
     $("#help").click(function () {
-        console.log('show')
         $(".boutonClassementVarianceFrequence").show()
 
         $("#resultatAuto").html("...")
@@ -518,7 +489,6 @@ $(function () {
                     $("#stopWorker").hide()
                     return false;
                 }
-                // console.log(e.data)
 
                 let scoreFrequence = Math.round(getScoreFrequencePhrase(e.data[0]))
                 updateNbPropositions()
@@ -548,7 +518,6 @@ $(function () {
         if ($(this).closest('.proposition').hasClass('propositionHelpFirst')) {
             return
         }
-        console.log('pok')
         e.preventDefault()
         if (e.shiftKey) {
             e.preventDefault()
@@ -560,7 +529,6 @@ $(function () {
         }
     });
     $("body").on('click', '.proposition:not(".last .phraseEntiere")>.captionSuggestion', function (e) {
-        console.log('pok')
         e.stopPropagation()
         e.preventDefault()
         if (e.ctrlKey) {
@@ -575,7 +543,6 @@ $(function () {
         $(this).parent().addClass('last')
     });
     $("body").on('click', '.proposition.last', function (e) {
-        console.log('pok')
         e.preventDefault()
         if (e.ctrlKey) {
             return false
