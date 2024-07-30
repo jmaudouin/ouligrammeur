@@ -364,7 +364,7 @@ $(function () {
         $("#help,#helpFirst,.elementDeMenu").prop('disabled', '')
     })
     $("#help,#helpFirst,.elementDeMenu").prop('disabled', '')
-    var tailleMotMini = 4
+    var tailleMotMini = 1
     $("#tailleMotMini").val(tailleMotMini)
 
 
