@@ -1,62 +1,30 @@
-# Node.js
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# Logs
-logs
-*.log
-*.log.*
-
-# Dependency directories
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Output directories
-dist/
-build/
-temp/
-
-# Webpack bundles
-assets/bundle/*.bundle.js
-
-# Compiled styles
-*.css
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# VS Code settings
+# Fichiers VSCode
 .vscode/
 
-# Miscellaneous
-.DS_Store
-Thumbs.db
+# Répertoires de dépendances
+node_modules/
 
-# Optional REPL history
-.node_repl_history
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Test coverage
-coverage/
+# Dossier de build
+dist/
+build/
 
-# Project files
-*.sublime-project
-*.sublime-workspace
+# Environnements
+.env
+.env.local
+.env.*.local
 
-# Output of 'npm pack'
-*.tgz
+# Fichiers de cache
+.cache/
+.parcel-cache/
 
-# Optional IDE distraction-free mode. See https://github.com/joebew42/dotfiles
-.idea/
+# Fichiers de sortie
+out/
 
-*.swp
-*~
+# Répertoires Webpack
+webpack/node_modules/
+webpack/dist/
