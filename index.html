@@ -7,27 +7,21 @@
 		<title>OuLiPo</title>
 		<link href="assets/bootstrap.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-		<link
-		href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
-		<!--<link href='https://fonts.googleapis.com/css?family=Alegreya:400,400italic,700,700italic' rel='stylesheet' type='text/css'>-->
+		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
 		<link href="assets/style.css" rel="stylesheet">
 		<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="lasoeurdupape" data-description="Support me on Buy me a coffee!" data-message="Merci de votre soutien !" data-color="#40DCA5" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
-
 	</head>
 	<body>
-
 		<div class="container-fluid">
-
 			<div class="row">
 				<div class="col-xs-6 col-md-8">
 					<div class="row">
 						<div class="col-xs-12 col-md-7">
 							<input class="btn" type="button" id="reinit" value="Réinitialiser" style="display:none">
 							<input type="text" id="selectLettresParTexte" style="display:none">
-
 							<input type="text" id="phraseOriginale" class="aideMemoire" value="Phrase originale"><span id="exemplePho"></span>
 							<div style="display:inline-block" id="anagScore"></div>
 							<div id="original" class="ligne"></div>
@@ -38,43 +32,32 @@
 							<div class="row">
 								<div class="col-xs-6 col-md-6">
 									<br>
-
 									<input class="btn elementDeMenu" type="button" id="selectTout" value="Tout sélectionner" style="background-color:#eaf7ed;display:none">
 									<input class="btn" type="button" id="invertHelp" value="Inverser" style="background-color:#eaf7ed;display:none"><br>
 									<br>
 									<input class="btn" type="button" id="help" value="Des idées ? (strict)" style="background-color:#eaf7ed;display:none">
 									<input type="number" id="tailleMotMini" style="display:none" min="1" step="1">
 									<span id="nbCandidats"></span><br>
-
 									<input class="btn" type="button" id="helpFirst" value="Des idées ? (1er mot)" style="background-color:#eaf7ed;display:none"><br><br>
 									<input class="btn elementDeMenu" type="button" id="helpClasser" value="Freq" style="background-color:#eaf7ed;display:none">
 									<input class="btn elementDeMenu" type="button" id="helpClasserTaille" value="Taille" style="background-color:#eaf7ed;display:none">
 									<input class="btn elementDeMenu" type="button" id="helpClasserTailleEtNbMots" value="Nombre" style="background-color:#eaf7ed;display:none"><br>
 									<input class="btn elementDeMenu boutonClassementVarianceFrequence" type="button" id="helpClasserFiltrerQualiteVarianceFrequence" value="var->freq" style="background-color:#eaf7ed;display:none">
 									<input class="btn elementDeMenu boutonClassementVarianceFrequence" type="button" id="helpClasserFiltrerQualiteFrequenceVariance" value="freq->var" style="background-color:#eaf7ed;display:none">
-
 									<br>
 									<br>
 									<span class="elementDeMenu" style="display:none">
 										<input type="checkbox" id="activerBoost" unchecked>
 										<label for="activerBoost">[Freq] boosté</label>
-
-
 										<br>
 										<input type="checkbox" id="filtreExigeant">
 										<label for="filtreExigeant">Mots de fréquence > 0</label>
-
-
 									</span><br>
 									<img src="assets/fr.png" id="selectFr" data-lg="fr" class="elementDeMenu lgSelecter lgSelected" style="display:none">
 									<img src="assets/en.png" id="selectEn" data-lg="en" class="elementDeMenu lgSelecter" style="margin-right:3%;display:none">
-
 									<img src="assets/zoommoins.png" id="zoomMoinsText" class="elementDeMenu" style="display:none">
-
 									<img src="assets/zoomplus.png" id="zoomPlusText" class="elementDeMenu" style="display:none">
-
 									<br><br>
-
 								</div>
 								<div class="col-xs-6 col-md-6">
 									<span class="elementDeMenu" style="display:none">
@@ -82,36 +65,21 @@
 										<input style="width:50px;" type="number" value="-1" id="filterBelowFrequence">
 										Fréquence min
 										<br>
-
 										<input type="number" id="nbMotsMin" value="0" style="width:50px" min="1" max="10">
-
 										mots min
 										<br>
-
 										<input type="number" id="nbMotsMax" value="7" style="width:50px" min="1" max="10">
-
 										mots max
 										<br>
 										<input type="checkbox" id="filterBelowFrequenceAutoRemove" checked><label for="filterBelowFrequenceAutoRemove">Supprimer/cacher</label><br>
-
-
 										<button class="btn" id="buttonFiltrerBelowFrequence" style="background-color:#eaf7ed;">Filtrer</button>
 										<br>
 										<span id="wrapProgressFilter" style="display:none;">
 											<span id="progressFilter"></span>
 										</span>
-
-
-										<br>
-										<br>
-										<br>
-
+										<br><br><br>
 										<input type="checkbox" id="filterBelowFrequenceAuto" checked><label for="filterBelowFrequenceAuto">auto filter</label>
-
-										<br>
-										<br>
-
-
+										<br><br>
 										<input class="btn" type="button" id="stopWorker" value="Arrêter la recherche" style="background-color:#eaf7ed;display:none">
 										<br>
 										<span id="nombrePropositions"></span>
