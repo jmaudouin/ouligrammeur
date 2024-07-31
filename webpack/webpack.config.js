@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, '../assets/bundle'),
+        filename: 'ouli.js',
+        path: path.resolve(__dirname, '../assets/js'),
         clean: true
     },
     module: {
