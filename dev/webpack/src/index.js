@@ -15,9 +15,11 @@ const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''
 // sources = dicoPendu.map(word => {
 //     return removeAccents(word)
 // });
-sources = Object.keys(dicoContrepets).filter(w => {
-    return freqFr[removeAccents(dicoContrepets[w][0]).toUpperCase()] > 1
-})
+sources = Object.keys(dicoContrepets)
+    // .filter(w => {
+    //     return freqFr[removeAccents(dicoContrepets[w][0]).toUpperCase()] > 0.5
+    // })
+    .filter(w => w.length > 7)
 let totalCount = sources.length;
 
 
