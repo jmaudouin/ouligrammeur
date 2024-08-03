@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>OuLiPéteur</title>
+		<link href="assets/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+		<link
+		href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
+		<!--<link href='https://fonts.googleapis.com/css?family=Alegreya:400,400italic,700,700italic' rel='stylesheet' type='text/css'>-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+														      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+														      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+														    <![endif]-->
+			<style type="text/css"> body {
+			;
+			/*font-family: 'Alegreya Sans', sans-serif;*/
+		}
+		.phonemeContrepet {
+			width: 100%;
+			height: 100%;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+		.ligneContrepet {
+			width: 100%;
+			min-height: 3.8em;
+			border: solid black 1px;
+		}
+		.blocPhonemeContrepet {
+			display: inline-block;
+			border-radius: 0.5em;
+			border: solid lightgrey 1px;
+			padding: 0.1em 0.6em;
+			margin: 0.1em;
+			line-height: 1.5em;
+			vertical-align: middle;
+			font-size: 25px;
+			position: relative;
+			cursor: pointer;
+			background-color: white;
+		}
+		.deletePhonemeContrepet {
+			font-size: 15px;
+			line-height: 15px;
+			position: absolute;
+			right: 0;
+			top: 0;
+			cursor: pointer;
+			opacity: 0.3;
+		}
+		.deletePhonemeContrepet:hover {
+			opacity: 0.9;
+		}
+		#originalContrepet {
+			background: #eee;
+		}
+		.aideMemoireContrepet {
+			display: inline-block;
+			width: 50%;
+		}
+		.blocCommandesLigneContrepet {
+			display: inline-block;
+			float: right;
+		}
+		.dupliquerLigneContrepet,
+		.supprimerLigneContrepet,
+		.modeLigneContrepet {
+			cursor: pointer;
+			display: inline-block;
+			margin: 0.5em;
+			text-decoration: underline;
+		}
+		#wrapIdeesContrepet > .ligneContrepet {
+			margin-top: 1em;
+		}
+		.toggleAideContrepet,
+		#toggleChatonContrepet {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+		.toggleAideContrepet: hover, #toggleChatonContrepet;
+		hover {
+			text-decoration: underline;
+		}
+		#toggleChatonContrepet {
+			font-size: 10px;
+		}
+		#wrapPhonemesContrepet > .blocPhonemeContrepet {
+			z-index: 1
+		}
+		.enteteLigneContrepet:hover {
+			background-color: #efefef
+		}
+		#resultatAutoContrepet {
+			height: 700px;
+			overflow: auto;
+		}
+		.phonemeAutoContrepet {
+			background-color: #eaf7ed
+		}
+		.waitingContrepet {
+			background-image: url('wait.gif');
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.selectableContrepet {
+			background-color: lightblue;
+		}
+		.propositionContrepet {
+			border-top: solid lightgrey 1px;
+			font-weight: bold;
+		}
+		.lastContrepet {
+			cursor: pointer;
+			text-decoration: underline;
+			font-weight: normal;
+		}
+		.reduirePropositionContrepet {
+			float: right;
+			background: lightgrey;
+			cursor: pointer;
+			width: 1em;
+			height: 1em;
+			border-radius: 0.5em;
+			vertical-align: middle;
+			line-height: 1em;
+			text-align: center;
+		}
+		#exemplePhoContrepet {
+			margin-left: 20px;
+		}
+		.captionSuggestionContrepet {
+			cursor: pointer;
+		}
+		</style>
+	</head>
+	<body>
+
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<br>
+					<div id="wrapPhonemesContrepet"></div>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-7">
+					<br>
+					<p><input type="text" class="aideMemoireContrepet" value="Phrase originale (pour mémoire)"><span id="exemplePhoContrepet"></span>
+					</p>
+					<div id="originalContrepet" class="ligne"></div>
+
+					<input class="btn" type="button" id="creerOriginalContrepet" value="C'est parti !">
+					<input class="btn" type="button" id="reinitContrepet" value="Réinitialiser" style="display:none">
+					<input class="btn" type="button" id="nouvelleLigneContrepet" value="nouvelle ligne" style="display:none">
+					<span id="shareUrlContrepet"></span>
+					<br><br>
+
+					<div id="wrapIdeesContrepet"></div>
+					<br><br><br>
+					<div id="toggleAideContrepet" class="toggleAideContrepet">Aide</div>
+					<div id="aideContrepet">
+						<h4>Comment ça marche ?</h4>
+						<p>
+							-
+							<strong>Transcrivez</strong>
+							la phrase originale
+							<strong>en phonèmes</strong>
+							(sans tenir compte de l'orthographe) en cliquant sur les étiquettes, puis cliquez sur "C'est parti !"<br>
+							-
+							<strong>Inventez</strong>
+							un contrepet de qualité supérieure en réagençant les phonèmes.<br>
+							-
+							<strong>Postez</strong>
+							vos trouvailles et épatez la galerie !<br><br>
+
+							Exemples de transcriptions :<br>
+							Catherine de Médicis : k a t r i n d e m é d i ss i ss,<br>
+							L'aspirant habite Javel : l a ss p i r en a b i t j a v è l,<br>
+							L'OuLiPéteur : l ou l i p é t eu r<br><br>
+
+							<i>Le "mode dessin" permet de déplacer librement les étiquettes, le "mode tri" permet de les classer.<br>
+								Les zones de saisie sont uniquement là pour mémoire.<br>
+								Selectionnez des phonèmes dans la phrase originale et cliquez sur "Des idées ?" pour obtenir une liste de mots possibles.<br>
+								Cliquez sur les suggestions pour afficher des mots possibles avec les phonèmes restants.
+							</i>
+
+
+						</p>
+						<div id="toggleChatonContrepet">Cliquez ici pour voir une photo de chaton trop mignon</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<input class="btn" type="button" id="helpContrepet" value="Des idées ?" style="background-color:#eaf7ed;display:none">
+					<input class="btn" type="button" id="selectHelpContrepet" value="Sélectionner" style="background-color:white;display:none">
+					<input class="btn" type="button" id="invertHelpContrepet" value="Inverser" style="background-color:white;display:none">
+					<div id="resultatAutoContrepet" class="waitingContrepet" style="display:none"></div>
+				</div>
+			</div>
+		</div>
+		<script src="assets/dico_contrepets.js"></script>
+		<script src="assets/contrepeteur.js"></script>
+	</body>
+</html>
