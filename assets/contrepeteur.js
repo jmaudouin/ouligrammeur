@@ -2,16 +2,13 @@
 $(function () {
 
     function chercheParMots() {
-        console.log("pokpokpokpokp")
         $("#resultatAutoContrepet").html('')
         var sonsATraiter = [];
         $(".phonemeAutoContrepet").each(function () {
             sonsATraiter.push(phonemes[$(this).find('.phonemeContrepet').html()][0]);
         });
         input = sonsATraiter.join('')
-        console.log(input)
         var soluces = allSoluces(input);
-        console.log(soluces)
         $.each(soluces, function (i, val) {
             $("#resultatAutoContrepet").append('<div class="propositionContrepet lastContrepet" data-reste="' + val[1] + '"><span class="captionSuggestionContrepet">' + val[0].join(',') + '</span> (' + sonsToPho(val[1]) + ')<span class="reduirePropositionContrepet">-</span></div>')
         });
@@ -26,7 +23,6 @@ $(function () {
                 }
             });
         });
-        console.log(retour.join(' '))
         return retour.join(' ')
     }
     $("body").on('click', '.reduirePropositionContrepet', function () {
@@ -112,7 +108,6 @@ $(function () {
 
     $("#helpContrepet").click(function () {
 
-        console.log('pokpok')
         changeSelecting(false)
         $("#resultatAutoContrepet").addClass('waitingContrepet');
 
