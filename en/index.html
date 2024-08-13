@@ -4,15 +4,15 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>OuLiPo EN</title>
-		<link href="assets/bootstrap.css" rel="stylesheet">
+		<title>OuLiPo</title>
+		<link href="../assets/bootstrap.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Spicy+Rice" rel="stylesheet">
-		<link href="assets/style.css" rel="stylesheet">
-		<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="lasoeurdupape" data-description="Support me on Buy me a coffee!" data-message="Merci de votre soutien !" data-color="#40DCA5" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+		<link href="../assets/style.css" rel="stylesheet">
+		<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="lasoeurdupape" data-description="Support me on Buy me a coffee!" data-message="Thanks for your support!" data-color="#40DCA5" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -20,59 +20,60 @@
 				<div class="col-xs-6 col-md-8">
 					<div class="row">
 						<div class="col-xs-12 col-md-7">
-							<input class="btn" type="button" id="reinit" value="Réinitialiser" style="display:none">
+							<input class="btn" type="button" id="reinit" value="Reset" style="display:none">
 							<input type="text" id="selectLettresParTexte" style="display:none">
-							<input type="text" id="phraseOriginale" class="aideMemoire" value="Phrase originale"><span id="exemplePho"></span>
+							<input type="text" id="phraseOriginale" class="aideMemoire" value="Start sentence"><span id="exemplePho"></span>
 							<div style="display:inline-block" id="anagScore"></div>
 							<div id="original" class="ligne"></div>
-							<input class="btn" type="button" id="creerOriginal" value="C'est parti !">
+							<input class="btn" type="button" id="creerOriginal" value="Let's go!">
 							<span id="shareUrl"></span>
 						</div>
 						<div class="col-xs-12 col-md-5">
 							<div class="row">
 								<div class="col-xs-6 col-md-6">
 									<br>
-									<input class="btn elementDeMenu" type="button" id="selectTout" value="Tout sélectionner" style="background-color:#eaf7ed;display:none">
-									<input class="btn" type="button" id="invertHelp" value="Inverser" style="background-color:#eaf7ed;display:none"><br>
+									<input class="btn elementDeMenu" type="button" id="selectTout" value="Select all" style="background-color:#eaf7ed;display:none">
+									<input class="btn" type="button" id="invertHelp" value="Invert" style="background-color:#eaf7ed;display:none"><br>
 									<br>
-									<input class="btn" type="button" id="help" value="Des idées ? (strict)" style="background-color:#eaf7ed;display:none">
+									<input class="btn" type="button" id="help" value="Ideas? (strict)" style="background-color:#eaf7ed;display:none">
 									<input type="number" id="tailleMotMini" style="display:none" min="1" step="1">
 									<span id="nbCandidats"></span><br>
-									<input class="btn" type="button" id="helpFirst" value="Des idées ? (1er mot)" style="background-color:#eaf7ed;display:none"><br><br>
+									<input class="btn" type="button" id="helpFirst" value="Ideas? (1st word)" style="background-color:#eaf7ed;display:none"><br><br>
 									<input class="btn elementDeMenu" type="button" id="helpClasser" value="Freq" style="background-color:#eaf7ed;display:none">
-									<input class="btn elementDeMenu" type="button" id="helpClasserTaille" value="Taille" style="background-color:#eaf7ed;display:none">
-									<input class="btn elementDeMenu" type="button" id="helpClasserTailleEtNbMots" value="Nombre" style="background-color:#eaf7ed;display:none"><br>
+									<input class="btn elementDeMenu" type="button" id="helpClasserTaille" value="Size" style="background-color:#eaf7ed;display:none">
+									<input class="btn elementDeMenu" type="button" id="helpClasserTailleEtNbMots" value="Number" style="background-color:#eaf7ed;display:none"><br>
 									<input class="btn elementDeMenu boutonClassementVarianceFrequence" type="button" id="helpClasserFiltrerQualiteVarianceFrequence" value="var->freq" style="background-color:#eaf7ed;display:none">
 									<input class="btn elementDeMenu boutonClassementVarianceFrequence" type="button" id="helpClasserFiltrerQualiteFrequenceVariance" value="freq->var" style="background-color:#eaf7ed;display:none">
 									<br>
 									<br>
 									<span class="elementDeMenu" style="display:none">
 										<input type="checkbox" id="activerBoost" unchecked>
-										<label for="activerBoost">[Freq] boosté</label>
+										<label for="activerBoost">[Freq] boosted</label>
 										<br>
 										<input type="checkbox" id="filtreExigeant">
-										<label for="filtreExigeant">Mots de fréquence > 0</label>
+										<label for="filtreExigeant">Words with frequency > 0</label>
 									</span><br>
-									<img src="assets/fr.png" id="selectFr" data-lg="fr" class="elementDeMenu lgSelecter lgSelected" style="display:none">
-									<img src="assets/en.png" id="selectEn" data-lg="en" class="elementDeMenu lgSelecter" style="margin-right:3%;display:none">
-									<img src="assets/zoommoins.png" id="zoomMoinsText" class="elementDeMenu" style="display:none">
-									<img src="assets/zoomplus.png" id="zoomPlusText" class="elementDeMenu" style="display:none">
+									<img src="../assets/en.png" id="selectEn" data-lg="en" class="elementDeMenu lgSelecter lgSelected" style="margin-right:3%;display:none">
+									<img src="../assets/fr.png" id="selectFr" data-lg="fr" class="elementDeMenu lgSelecter" style="display:none">
+
+									<img src="../assets/zoommoins.png" id="zoomMoinsText" class="elementDeMenu" style="display:none">
+									<img src="../assets/zoomplus.png" id="zoomPlusText" class="elementDeMenu" style="display:none">
 									<br><br>
 								</div>
 								<div class="col-xs-6 col-md-6">
 									<span class="elementDeMenu" style="display:none">
 										<br>
 										<input style="width:50px;" type="number" value="-1" id="filterBelowFrequence">
-										Fréquence min
+										Minimum frequency
 										<br>
 										<input type="number" id="nbMotsMin" value="0" style="width:50px" min="1" max="10">
-										mots min
+										min words
 										<br>
 										<input type="number" id="nbMotsMax" value="7" style="width:50px" min="1" max="10">
-										mots max
+										max words
 										<br>
-										<input type="checkbox" id="filterBelowFrequenceAutoRemove" checked><label for="filterBelowFrequenceAutoRemove">Supprimer/cacher</label><br>
-										<button class="btn" id="buttonFiltrerBelowFrequence" style="background-color:#eaf7ed;">Filtrer</button>
+										<input type="checkbox" id="filterBelowFrequenceAutoRemove" checked><label for="filterBelowFrequenceAutoRemove">Remove/hide</label><br>
+										<button class="btn" id="buttonFiltrerBelowFrequence" style="background-color:#eaf7ed;">Filter</button>
 										<br>
 										<span id="wrapProgressFilter" style="display:none;">
 											<span id="progressFilter"></span>
@@ -80,7 +81,7 @@
 										<br><br><br>
 										<input type="checkbox" id="filterBelowFrequenceAuto" checked><label for="filterBelowFrequenceAuto">auto filter</label>
 										<br><br>
-										<input class="btn" type="button" id="stopWorker" value="Arrêter la recherche" style="background-color:#eaf7ed;display:none">
+										<input class="btn" type="button" id="stopWorker" value="Stop search" style="background-color:#eaf7ed;display:none">
 										<br>
 										<span id="nombrePropositions"></span>
 									</span>
@@ -91,64 +92,63 @@
 						</div>
 					</div>
 					<br>
-					<input class="btn" type="button" id="nouvelleLigne" value="nouvelle ligne" style="display:none">
-					<input class="btn" type="button" id="selectHelp" value="Sélectionner" style="background-color:#eaf7ed;display:none">
+					<input class="btn" type="button" id="nouvelleLigne" value="new line" style="display:none">
+					<input class="btn" type="button" id="selectHelp" value="Select" style="background-color:#eaf7ed;display:none">
 					<div id="wrapIdees"></div>
 
 					<span class="elementDeMenu" style="display:none"><br><br>
-						Exclure du dictionnaire (séparer les mots par des blancs) :<br>
+						Exclude from dictionary (separate words with spaces):<br>
 						<textarea id="exclureDuDico"></textarea>
 						<br>
-						Expressions obligatoires :<br>
+						Mandatory expressions:<br>
 
 						<textarea id="expressionsObligatoires"></textarea>
 						<br>
 
-						Notes :
+						Notes:
 						<br>
 						<textarea id="notesPerso"></textarea>
 						<br><br>
 					</span>
-					<div id="toggleAide" class="toggleAide">Aide</div>
+					<div id="toggleAide" class="toggleAide">Help</div>
 					<div id="aide">
 						<p>
-							<h4>Comment ça marche ?</h4>
+							<h4>How does it work?</h4>
 							<br>
-							Ecrivez la phrase originale, puis cliquez sur "C'est parti !"<br>
+							Write the original sentence, then click on "Let's go!"<br>
 
-							<i>Le "mode dessin" permet de déplacer librement les étiquettes, le "mode tri" permet de les classer.<br><br>
-								Selectionnez des lettres dans la phrase originale et cliquez sur "Des idées ?" pour obtenir une liste d'anagrammes.
+							<i>The "drawing mode" allows you to move the tags freely, the "sorting mode" allows you to sort them.<br><br>
+								Select letters in the original sentence and click on "Ideas?" to get a list of anagrams.
 								<br>
-								Le
-								<strong>mode "strict"</strong>
-								renvoie toutes les combinaisons de mots du dictionnaire qui utilisent toutes les lettres proposées.<br>
-								(vous pouvez choisir la taille minimum des mots à tester. Cliquez à droite sur le chiffre pour alterner entre 1 et 4 lettres. Plus le nombre de mots candidats est grand, plus le calcul prendra du temps, vous êtes prévenu !)<br>
-								Le
-								<strong>mode "premier mot"</strong>
-								renvoie la liste des mots du dictionnaire qui peuvent être écrits avec les lettres proposées.<br>
-								(vous pouvez ensuite, pour chaque proposition, faire de même avec les lettres restantes en cliquant dessus, ou refaire une nouvelle recherche stricte en cliquant à droite dessus)<br><br>
-								Cliquez à droite sur une lettre pour la rendre obligatoire en mode &quot;premier mot&quot;.<br>
-								Cliquez sur<strong>
+								The
+								<strong>"strict mode"</strong>
+								returns all the combinations of words from the dictionary that use all the proposed letters.<br>
+								(you can choose the minimum size of the words to be tested. Click on the number on the right to switch between 1 and 4 letters. The larger the number of candidate words, the longer the calculation will take, you've been warned!)<br>
+								The
+								<strong>"first word mode"</strong>
+								returns the list of words from the dictionary that can be written with the proposed letters.<br>
+								(for each proposal, you can then do the same with the remaining letters by clicking on it, or redo a new strict search by clicking on the right side of it)<br><br>
+								Right-click on a letter to make it mandatory in "first word mode".<br>
+								Click on<strong>
 									"Freq"</strong>
-								pour afficher les résultats dans l'ordre de probabilité d'apparition des mots en langue française.<br>
-								Cliquez sur<strong>
-									"Taille"
-								</strong>pour afficher les résultats dans l'ordre de probabilité d'apparition des mots en langue française pondérée par leur taille.<br>
-								Cliquez sur<strong>
-									"Nombre"
-								</strong>pour trier les résultats de l'option "Freq" par nombre de mots décroissant.<br>
-								Faites un ctrl+clic sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence.<br>
-								Faites un ctrl+clic droit sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence et en taille.<br>
-								Cliquez sur shift+clic sur une suggestion du mode "premier mot" pour créer automatiquement une nouvelle sélection de lettres qui l'exclut.<br>
-								Activez l'option "[freq] boosté" pour donner la priorité aux mots ci-dessous :<br>
+								to display the results in the order of probability of word appearance in the French language.<br>
+								Click on<strong>
+									"Size"
+								</strong>to display the results in the order of probability of word appearance in the French language weighted by their length.<br>
+								Click on<strong>
+									"Number"
+								</strong>to sort the results of the "Freq" option by decreasing number of words.<br>
+								Do a ctrl+click on a proposal containing a list of sub-proposals to sort the latter by frequency.<br>
+								Do a ctrl+right-click on a proposal containing a list of sub-proposals to sort the latter by frequency and size.<br>
+								Click on shift+click on a suggestion in "first word mode" to automatically create a new selection of letters that excludes it.<br>
+								Activate the "[freq] boosted" option to prioritize the following words:<br>
 								<textarea id="motsBoostes"></textarea><br><br>
-								Ajouter les mots ci-dessous au dictionnaire :<br>
+								Add the following words to the dictionary:<br>
 								<textarea id="motsAjoutes"></textarea><br><br>
-								<a href="http://www.gef.free.fr/anag.php" target="_blank">Testeur d'anagrammes</a><br>
+								<a href="http://www.gef.free.fr/anag.php" target="_blank">Anagram tester</a><br>
 								<br><br>
 								<br>
 							</i>
-
 						</p>
 					</div>
 				</div>
@@ -157,8 +157,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="assets/js/ouli.js"></script>
-
-
+		<script src="../assets/js/ouli.js"></script>
 	</body>
 </html>

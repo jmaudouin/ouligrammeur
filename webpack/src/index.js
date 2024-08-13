@@ -925,7 +925,7 @@ $(function () {
                 delay: 20,
                 containment: ligne
             })
-            ligne.find('.modeLigne').html('Tri')
+            ligne.find('.modeLigne').html('Sort')
             ligne.attr('data-mode', 'dessin')
         } else {
             ligne.find('.blocPhoneme').draggable("destroy");
@@ -946,7 +946,7 @@ $(function () {
                 ligne.find('.lignePhonemesWrap').append(getEltPhoneme(elt[0], "notDeletable"))
             })
             ligne.find('.lignePhonemesWrap').sortable();
-            ligne.find('.modeLigne').html('Dessin')
+            ligne.find('.modeLigne').html('Draw')
             ligne.attr('data-mode', 'tri')
         }
     })
@@ -959,7 +959,7 @@ $(function () {
     })
 
     function appendLigne(data, after) {
-        var ligne = $('<div class="ligne" data-mode="tri"><div class="enteteLigne"><input type="text" class="aideMemoire"><div class="blocCommandesLigne"><div class="modeLigne">Dessin</div><div class="dupliquerLigne">+</div><div class="supprimerLigne">X</div></div></div><div class="lignePhonemesWrap"></div></div>')
+        var ligne = $('<div class="ligne" data-mode="tri"><div class="enteteLigne"><input type="text" class="aideMemoire"><div class="blocCommandesLigne"><div class="modeLigne">Draw</div><div class="dupliquerLigne">+</div><div class="supprimerLigne">X</div></div></div><div class="lignePhonemesWrap"></div></div>')
         $.each(data, function (i, elt) {
             ligne.find('.lignePhonemesWrap').append(getEltPhoneme(elt, "notDeletable"));
         });
