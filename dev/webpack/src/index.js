@@ -8,18 +8,20 @@ let findings = {};
 window.findings = findings;
 let sources
 // sources = dicoAnagrammesFr.slice(100000, 105000);
-// sources = dicoAnagrammesFr.filter(w => {
-//     return freqFr[w] > 1
-// })
+sources = dicoAnagrammesFr.filter(w => {
+    return freqFr[w] > 1
+})
 const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-zA-Z]/g, '')
 // sources = dicoPendu.map(word => {
 //     return removeAccents(word)
 // });
-sources = Object.keys(dicoContrepets)
-    // .filter(w => {
-    //     return freqFr[removeAccents(dicoContrepets[w][0]).toUpperCase()] > 0.5
-    // })
-    .filter(w => w.length > 7)
+// sources = Object.keys(dicoContrepets)
+//     // .filter(w => {
+//     //     return freqFr[removeAccents(dicoContrepets[w][0]).toUpperCase()] > 0.5
+//     // })
+//     .filter(w => w.length > 7)
+
+
 let totalCount = sources.length;
 
 
@@ -31,7 +33,7 @@ async function findCompleteFirsts(inputS) {
         const sorted_inputS = inputS.split('').sort().join('');
         for (var aaa = 0, len = sources.length; aaa < len; aaa++) {
             var w = sources[aaa]
-            if (w.length !== inputS.length || w === inputS) continue
+            if (w.length !== inputS.length || w === inputS || findings[w]) continue
             const sorted_w = w.split('').sort().join('');
             if (sorted_w === sorted_inputS) {
                 localFindings.push(w);
@@ -54,24 +56,22 @@ for (let index = 0; index < sources.length; index++) {
         progressDiv.html(Math.round(index / totalCount * 10000) / 100 + '%');
         let finds = await findCompleteFirsts(source);
         if (finds.length > 0) {
-            let result = [
-                {
-                    son: source,
-                    mot: dicoContrepets[source][0]
-                }
-            ]
-            finds.forEach(f => {
-                result.push({
-                    son: f,
-                    mot: dicoContrepets[f][0]
-                })
-            })
+            // let result = [
+            //     {
+            //         son: source,
+            //         mot: dicoContrepets[source][0]
+            //     }
+            // ]
+            // finds.forEach(f => {
+            //     result.push({
+            //         son: f,
+            //         mot: dicoContrepets[f][0]
+            //     })
+            // })
             findings[source] = finds;
-            jsonDiv.append(JSON.stringify(result) + ",<br>");
-            // jsonDiv.append('"' + source + '" : {' +
-            //     "phonemes: " + JSON.stringify(finds) + ", " +
-            //     "mots: " + JSON.stringify(dicoContrepets[source])
-            //     + " }<br>");
+            // jsonDiv.append(JSON.stringify(result) + ",<br>");
+            jsonDiv.append('"' + source + '" : ' + JSON.stringify(finds) + ", <br>");
+
         }
     }, 0)
 }
