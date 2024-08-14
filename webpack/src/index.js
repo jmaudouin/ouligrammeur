@@ -478,6 +478,7 @@ $(function () {
         }
         $("#help,#helpFirst,.elementDeMenu").prop('disabled', '')
     })
+    $(".lgSelected").trigger('click')
     $("#help,#helpFirst,.elementDeMenu").prop('disabled', '')
     var tailleMotMini = 1
     $("#tailleMotMini").val(tailleMotMini)
