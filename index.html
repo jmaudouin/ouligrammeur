@@ -47,11 +47,16 @@
 									<br>
 									<br>
 									<span class="elementDeMenu" style="display:none">
-										<input type="checkbox" id="activerBoost" unchecked>
-										<label for="activerBoost">[Freq] boosté</label>
+										<input type="checkbox" id="activerBoost" class="hiddenOption" unchecked>
+										<label for="activerBoost" class="hiddenOption">[Freq] boosted</label>
+
 										<br>
-										<input type="checkbox" id="filtreExigeant">
-										<label for="filtreExigeant">Mots de fréquence > 0</label>
+
+
+										<input type="checkbox" id="filtreExigeant" class="hiddenOption">
+
+										<label for="filtreExigeant" class="hiddenOption">Mots de fréquence > 0</label>
+
 									</span><br>
 									<img src="assets/fr.png" id="selectFr" data-lg="fr" class="elementDeMenu lgSelecter lgSelected" style="display:none">
 									<img src="assets/en.png" id="selectEn" data-lg="en" class="elementDeMenu lgSelecter" style="margin-right:3%;display:none">
@@ -99,10 +104,15 @@
 						Exclure du dictionnaire (séparer les mots par des blancs) :<br>
 						<textarea id="exclureDuDico"></textarea>
 						<br>
-						Expressions obligatoires :<br>
 
+						Expressions obligatoires :<br>
 						<textarea id="expressionsObligatoires"></textarea>
 						<br>
+
+						Ajouter les mots ci-dessous au dictionnaire :<br>
+						<textarea id="motsAjoutes"></textarea>
+						<br>
+
 
 						Notes :
 						<br>
@@ -141,9 +151,8 @@
 								Faites un ctrl+clic droit sur une proposition contenant une liste de sous-propositions pour classer ces dernières en fréquence et en taille.<br>
 								Cliquez sur shift+clic sur une suggestion du mode "premier mot" pour créer automatiquement une nouvelle sélection de lettres qui l'exclut.<br>
 								Activez l'option "[freq] boosté" pour donner la priorité aux mots ci-dessous :<br>
-								<textarea id="motsBoostes"></textarea><br><br>
-								Ajouter les mots ci-dessous au dictionnaire :<br>
-								<textarea id="motsAjoutes"></textarea><br><br>
+								<textarea id="motsBoostes" class="hiddenOption"></textarea><br><br>
+
 								<a href="http://www.gef.free.fr/anag.php" target="_blank">Testeur d'anagrammes</a><br>
 								<br><br>
 								<br>

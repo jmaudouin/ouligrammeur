@@ -158,7 +158,8 @@
 }
 
 #exclureDuDico,
-#expressionsObligatoires {
+#expressionsObligatoires,
+#motsAjoutes {
     width: 100%;
     min-height: 4em;
 }
@@ -262,5 +263,9 @@
 }
 
 #aide {
+    display: none;
+}
+
+.hiddenOption {
     display: none;
 }

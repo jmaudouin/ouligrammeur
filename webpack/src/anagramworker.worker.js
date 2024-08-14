@@ -2,7 +2,6 @@
 import dicoAnagrammesFr from './dico_fr';
 import dicoAnagrammesEn from './dico_en';
 
-console.log('worker loaded')
 self.addEventListener('message', function (e) {
 
     var dicoAnagrammes;
@@ -149,42 +148,29 @@ self.addEventListener('message', function (e) {
     }
 
 
+
+    if (e.data[2] == "fr") {
+        dicoAnagrammes = dicoAnagrammesFr
+    } else {
+        dicoAnagrammes = dicoAnagrammesEn
+    }
+    e.data[3].forEach(mot => {
+        if (dicoAnagrammes.indexOf(mot) === -1) dicoAnagrammes.push(mot)
+    });
+    dicoAnagrammes.sort(function (a, b) {
+        return b.length - a.length || a.localeCompare(b)
+    })
+
+
     if (e.data[0] == "findFirsts") {
-        if (e.data[2] == "fr") {
-            dicoAnagrammes = dicoAnagrammesFr
-        } else {
-            dicoAnagrammes = dicoAnagrammesEn
-        }
-        dicoAnagrammes = dicoAnagrammes.concat(e.data[3])
-        dicoAnagrammes.sort(function (a, b) {
-            return b.length - a.length || a.localeCompare(b)
-        })
         findFirsts(e.data[1][0], e.data[1][1], e.data[1][2]);
         self.postMessage("calcultermine");
     }
     if (e.data[0] == "chercheParMots") {
-        if (e.data[2] == "fr") {
-            dicoAnagrammes = dicoAnagrammesFr
-        } else {
-            dicoAnagrammes = dicoAnagrammesEn
-        }
-        dicoAnagrammes = dicoAnagrammes.concat(e.data[3])
-        dicoAnagrammes.sort(function (a, b) {
-            return b.length - a.length || a.localeCompare(b)
-        })
         chercheParMots(e.data[1][0], e.data[1][1], e.data[1][2], e.data[1][0].length);
         self.postMessage("calcultermine");
     }
     if (e.data[0] == "getChercheParMots") {
-        if (e.data[2] == "fr") {
-            dicoAnagrammes = dicoAnagrammesFr
-        } else {
-            dicoAnagrammes = dicoAnagrammesEn
-        }
-        dicoAnagrammes = dicoAnagrammes.concat(e.data[3])
-        dicoAnagrammes.sort(function (a, b) {
-            return b.length - a.length || a.localeCompare(b)
-        })
         getChercheParMots(e.data[1][0], e.data[1][1], e.data[1][2], e.data[1][0].length);
         self.postMessage("calcultermine");
     }

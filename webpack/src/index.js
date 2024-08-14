@@ -46,6 +46,10 @@ function getVariance(phrase) {
 
 
 function getScoreFrequencePhrase(phrase) {
+    motsAjoutesArray = $("#motsAjoutes").val().toUpperCase().split(" ")
+    motsAjoutesArray.forEach(mot => {
+        freqMots[mot.toUpperCase()] = 20000
+    })
     let score = 0
     let hasUndefinedWord = false
     let words = phrase.split(" ")
@@ -68,7 +72,9 @@ var freq
 
 function getScoreFrequenceMot(mot) {
     freq = freqMots[mot]
-    if (freq === undefined) {
+    if (motsAjoutesArray.indexOf(mot) !== -1) {
+        freq = 20000
+    } else if (freq === undefined) {
         return 0
     }
     const maxValue = 30000;
@@ -206,9 +212,15 @@ function filtrer(forceSuppr = false) {
 
 
 }
-
+let motsAjoutesArray = []
 
 $(function () {
+
+    $("body").on("click", function (e) {
+        if (e.ctrlKey && e.shiftKey) {
+            $(".hiddenOption").toggle()
+        }
+    })
 
     $(".elementDeMenu").hide()
     $("#motsBoostes").val(grosMots.join(' '))
@@ -269,6 +281,10 @@ $(function () {
         filtrerQualiteVariance(critere1, critere2)
     });
     function classerPropositions(wrapper) {
+        motsAjoutesArray = $("#motsAjoutes").val().toUpperCase().split(" ")
+        motsAjoutesArray.forEach(mot => {
+            freqMots[mot.toUpperCase()] = 20000
+        })
         var motsBoostes = $("#motsBoostes").val().split(' ')
         var boost = $("#activerBoost").is(':checked')
         wrapper.children(".proposition").each(function () {
@@ -277,6 +293,10 @@ $(function () {
                 var text = $(this).attr('data-phrase').split(" ")
                 var score = 0
                 $.each(text, function (i, elt) {
+                    // if (motsAjoutesArray.indexOf(elt.toLowerCase()) !== -1) {
+                    //     console.log(elt)
+                    //     freqMots[elt.toUpperCase()] = 20000
+                    // }
                     if (elt.indexOf("(") == -1 && motsBoostes.indexOf(elt.toLowerCase()) != -1 && boost) {
                         score += 1000000
                     } else {
@@ -300,12 +320,19 @@ $(function () {
             .appendTo($wrapper);
     }
     function classerPropositionsTaille(wrapper) {
+        motsAjoutesArray = $("#motsAjoutes").val().toUpperCase().split(" ")
+        motsAjoutesArray.forEach(mot => {
+            freqMots[mot.toUpperCase()] = 20000
+        })
         wrapper.children(".proposition").each(function () {
             if ($(this).attr('data-rangtaille') === undefined) {
 
                 var text = $(this).attr('data-phrase').split(" ")
                 var score = Number.MAX_SAFE_INTEGER
                 $.each(text, function (i, elt) {
+                    // if (motsAjoutesArray.indexOf(elt.toLowerCase()) !== -1) {
+                    //     freqMots[elt.toUpperCase()] = 20000
+                    // }
                     if (elt.indexOf("(") == -1 && freqMots[elt] === undefined) {
                         score = 0;
                     }
@@ -350,6 +377,10 @@ $(function () {
 
     function classerPropositionsTailleEtNbMots(wrapper) {
 
+        motsAjoutesArray = $("#motsAjoutes").val().toUpperCase().split(" ")
+        motsAjoutesArray.forEach(mot => {
+            freqMots[mot.toUpperCase()] = 20000
+        })
         var motsBoostes = $("#motsBoostes").val().split(' ')
         var boost = $("#activerBoost").is(':checked')
         wrapper.children(".proposition").each(function () {
@@ -358,6 +389,9 @@ $(function () {
                 var text = $(this).attr('data-phrase').split(" ")
                 var score = 0
                 $.each(text, function (i, elt) {
+                    // if (motsAjoutesArray.indexOf(elt.toLowerCase()) !== -1) {
+                    //     freqMots[elt.toUpperCase()] = 20000
+                    // }
                     if (elt.indexOf("(") == -1 && motsBoostes.indexOf(elt.toLowerCase()) != -1 && boost) {
                         score += 1000000
                     } else {
@@ -378,6 +412,9 @@ $(function () {
                 if (text.indexOf("(") == -1) {
                     var score = Number.MAX_SAFE_INTEGER
                     $.each(text, function (i, elt) {
+                        // if (motsAjoutesArray.indexOf(elt.toLowerCase()) !== -1) {
+                        //     freqMots[elt.toUpperCase()] = 20000
+                        // }
                         if (freqMots[elt] === undefined) {
                             score = 0;
                         }
@@ -523,8 +560,12 @@ $(function () {
             }, false);
 
             var l = $(".lgSelected").attr('data-lg')
-            var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-            worker.postMessage(["chercheParMots", [input, $("#tailleMotMini").val(), exclus], l, motsAjoutes]); // Send data to our worker.
+            worker.postMessage([
+                "chercheParMots",
+                [input, $("#tailleMotMini").val(), exclus],
+                l,
+                $("#motsAjoutes").val().toUpperCase().split(' ')
+            ]); // Send data to our worker.
 
 
 
@@ -586,8 +627,12 @@ $(function () {
                 updateNbPropositions()
             }, false);
             var l = $(".lgSelected").attr('data-lg')
-            var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-            worker.postMessage(["findFirsts", [input, obligs, exclus], l, motsAjoutes]); // Send data to our worker.
+            worker.postMessage([
+                "findFirsts",
+                [input, obligs, exclus],
+                l,
+                $("#motsAjoutes").val().toUpperCase().split(' ')
+            ]); // Send data to our worker.
             $("#resultatAuto").removeClass('waiting');
         }, 100);
     });
@@ -655,8 +700,12 @@ $(function () {
             newProp.css('padding-left', newProp.parents().length * 2 + "px");
         }, false);
         var l = $(".lgSelected").attr('data-lg')
-        var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-        worker.postMessage(["findFirsts", [prop.attr('data-reste').toUpperCase(), "", exclus], l, motsAjoutes]);
+        worker.postMessage([
+            "findFirsts",
+            [prop.attr('data-reste').toUpperCase(), "", exclus],
+            l,
+            $("#motsAjoutes").val().toUpperCase().split(' ')
+        ]);
     });
 
     /*
@@ -697,9 +746,12 @@ $(function () {
             newProp.css('padding-left', newProp.parents().length * 2 + "px");
         }, false);
         var l = $(".lgSelected").attr('data-lg')
-        var motsAjoutes = $("#motsAjoutes").val().toUpperCase().split(' ')
-        worker.postMessage(["getChercheParMots", [prop.attr('data-reste').toUpperCase(), $("#tailleMotMini").val(), exclus], l, motsAjoutes]); // Send data to our worker.
-
+        worker.postMessage([
+            "getChercheParMots",
+            [prop.attr('data-reste').toUpperCase(), $("#tailleMotMini").val(), exclus],
+            l,
+            $("#motsAjoutes").val().toUpperCase().split(' ')
+        ]); // Send data to our worker.
     });
 
     $("body").on('contextmenu', '.proposition:not(.last)', function (e) {
