@@ -478,7 +478,14 @@ $(function () {
         }
         $("#help,#helpFirst,.elementDeMenu").prop('disabled', '')
     })
-    $(".lgSelected").trigger('click')
+
+    if ($(".lgSelected").attr('data-lg') == "en") {
+        freqMots = freqEn
+    } else {
+        freqMots = freqFr
+    }
+
+
     $("#help,#helpFirst,.elementDeMenu").prop('disabled', '')
     var tailleMotMini = 1
     $("#tailleMotMini").val(tailleMotMini)
