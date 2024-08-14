@@ -73,18 +73,12 @@
     background-color: white;
 }
 
-.toggleAide,
-#toggleChaton {
+.toggleAide {
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .toggleAide:hover {
     text-decoration: underline;
-}
-
-#toggleChaton {
-    font-size: 10px;
 }
 
 #resultatAuto {
